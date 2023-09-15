@@ -1,0 +1,70 @@
+---
+import "../styles/app.scss";
+import "../styles/fonts.css";
+
+interface Props {
+	title: string;
+	bodyClass: string;
+}
+
+const { title, bodyClass } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class={bodyClass}>
+		<slot />
+		<div class="grit"></div>
+	</body>
+</html>
+<style is:global>
+	.grit {
+		inset: 0;
+		z-index: 1000;
+    opacity: 0.2;
+    position: fixed;
+    mix-blend-mode: soft-light;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    background-image: var(--noise);
+    background-size: 200px 200px;
+    background-repeat: repeat;
+		pointer-events: none;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.grit {
+			animation: flip 0.5s steps(1) infinite;
+		}
+	}
+
+	@keyframes flip {
+		0% {
+			transform: scaleX(1) scaleY(1) translateZ(0);
+		}
+
+		25% {
+			transform: scaleX(1) scaleY(-1) translateZ(0);
+		}
+
+		50% {
+			transform: scaleX(-1) scaleY(-1) translateZ(0);
+		}
+
+		75% {
+			transform: scaleX(-1) scaleY(1) translateZ(0);
+		}
+
+		100% {
+			transform: scaleX(-1) scaleY(1) translateZ(0);
+		}
+	}
+</style>

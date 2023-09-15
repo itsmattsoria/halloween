@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'ATC Overlook';
+  src: url('/fonts/ATCOverlook-Heavy.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'ATC Overlook';
+  src: url('/fonts/ATCOverlook-HeavyItalic.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: fallback;
+}

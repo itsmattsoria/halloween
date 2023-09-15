@@ -1,0 +1,68 @@
+// Global Styles
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  padding: 0.5rem;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  background-color: theme('colors.primary');
+}
+
+body {
+  min-height: calc(100vh - 1rem);
+  color: theme('colors.primary');
+  background-color: theme('colors.secondary');
+  border-radius: theme('borderRadius.DEFAULT');
+}
+
+.container {
+  margin-inline: auto;
+  max-width: 90rem;
+  padding-inline: 0.5rem;
+
+  @screen lg {
+    padding-inline: 1.5rem;
+  }
+}
+
+// SVGs
+svg {
+  display: block;
+}
+
+// Fancy Scrollbar Styles
+.scrollbars {
+  scrollbar-width: thin;
+  scrollbar-color: var(--colorSecondary) var(--colorHighlight);
+}
+.scrollbars::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+.scrollbars::-webkit-scrollbar-track {
+  background: var(--colorHighlight);
+}
+.scrollbars::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: var(--colorSecondary);
+  border: 3px solid var(--colorHighlight);
+}
+
+img {
+  max-width: 100%;
+}
+
+input {
+  color: theme('colors.black');
+}
+
+// Medium Zoom
+.medium-zoom-overlay,
+.medium-zoom-image--opened {
+  z-index: 999;
+}

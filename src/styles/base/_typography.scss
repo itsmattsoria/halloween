@@ -1,0 +1,8 @@
+// Typography
+
+.type-full {
+  --minFontSize: 32px;
+  --maxFontSize: 300px;
+  --scaler: 10vw;
+  font-size: clamp(var(--minFontSize), var(--scaler), var(--maxFontSize));
+}
