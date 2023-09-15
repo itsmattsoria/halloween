@@ -1,14 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection, getEntry } from 'astro:content';
 import Card from '../components/Card.astro';
+
+const years = await getCollection('years');
 ---
 
 <Layout title="Halloween 🎃">
 	<main class="container">
 		<h1 class="type-full uppercase text-highlight" style="--scaler:14.6vw;">Halloween</h1>
+
+		<ol>
+			{years.map((year) => <li><a href={year.slug}>{year.data.title}</a></li>)}
+		</ol>
 	</main>
 </Layout>
-
-<style>
-
-</style>
