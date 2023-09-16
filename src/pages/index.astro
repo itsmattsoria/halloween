@@ -1,17 +1,32 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection, getEntry } from 'astro:content';
 import Card from '../components/Card.astro';
 
 const years = await getCollection('years');
 ---
 
-<Layout title="Halloween 🎃">
+<BaseLayout title="Halloween 🎃">
 	<main class="container">
-		<h1 class="type-full uppercase text-highlight" style="--scaler:14.6vw;">Halloween</h1>
+		<h1 class="type-full uppercase text-highlight" style="--scaler:14.6vw;" transition:name="siteTitle">Halloween</h1>
 
-		<ol>
-			{years.map((year) => <li><a href={year.slug}>{year.data.title}</a></li>)}
+		<ol class="flex flex-wrap gap-y-6 gap-x-12">
+			{years.reverse().map((year) => <li><a href={year.slug} class="text-9xl font-display">{year.data.title}</a></li>)}
 		</ol>
+
+		<h2 class="text-5xl text-highlight">All Time Favorites</h2>
+
+		<h3 class="text-4xl text-highlight">Music</h3>
+		<div class="max-w-prose">
+			<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2YRiadmpeea27oT4GeXRZx?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+		</div>
+
+		<h3 class="text-4xl text-highlight">Movies</h3>
+		<ul>
+			<li>Halloween 1969</li>
+			<li>Hellraise</li>
+			<li>Susperia</li>
+			<li>Silence of The Lambs</li>
+		</ul>
 	</main>
-</Layout>
+</BaseLayout>

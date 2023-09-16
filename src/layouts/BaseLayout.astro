@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+
 import "../styles/app.scss";
 import "../styles/fonts.css";
 
@@ -8,6 +10,7 @@ interface Props {
 }
 
 const { title, bodyClass } = Astro.props;
+const bodyClasses = bodyClass + ' pb-24';
 ---
 
 <!doctype html>
@@ -19,8 +22,9 @@ const { title, bodyClass } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
-	<body class={bodyClass}>
+	<body class={bodyClasses}>
 		<slot />
 		<div class="grit"></div>
 	</body>

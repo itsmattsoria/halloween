@@ -1,0 +1,13 @@
+---
+import BaseLayout from './BaseLayout.astro'
+const {frontmatter} = Astro.props;
+---
+<BaseLayout url={frontmatter.url}>
+  <div class="container">
+    <div class="text-xl uppercase text-highlight" transition:name="siteTitle"><a href="/">Halloween</a></div>
+    <h1 class="text-9xl font-display">{frontmatter.title}</h1>
+    <div class="max-w-prose">
+      <slot />
+    </div>
+  </div>
+</BaseLayout>

@@ -35,34 +35,29 @@ svg {
   display: block;
 }
 
-// Fancy Scrollbar Styles
-.scrollbars {
-  scrollbar-width: thin;
-  scrollbar-color: var(--colorSecondary) var(--colorHighlight);
-}
-.scrollbars::-webkit-scrollbar {
-  width: 11px;
-  height: 11px;
-}
-.scrollbars::-webkit-scrollbar-track {
-  background: var(--colorHighlight);
-}
-.scrollbars::-webkit-scrollbar-thumb {
-  border-radius: 6px;
-  background-color: var(--colorSecondary);
-  border: 3px solid var(--colorHighlight);
-}
-
 img {
   max-width: 100%;
 }
 
-input {
-  color: theme('colors.black');
-}
+a {
+  position: relative;
+  display: inline-block;
+  &::after {
+    opacity: 0;
+    content: '🎃';
+    font-size: 0.65em;
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    transform: translate(-50%, -50%);
+    padding-inline-start: 0.25em;
+  }
 
-// Medium Zoom
-.medium-zoom-overlay,
-.medium-zoom-image--opened {
-  z-index: 999;
+  &:hover,
+  &:focus-visible {
+    color: theme('colors.highlight');
+    &::after {
+      opacity: 1;
+    }
+  }
 }

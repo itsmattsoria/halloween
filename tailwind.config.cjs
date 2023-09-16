@@ -22,17 +22,21 @@ module.exports = {
       },
       fontFamily: {
         sans: ['ATC Overlook', ...defaultTheme.fontFamily.sans],
+        display: ['Macabre', ...defaultTheme.fontFamily.serif],
       },
       borderRadius: {
         DEFAULT: '0.5rem',
       },
-      typography: {
+      typography: ({ theme }) => ({
         DEFAULT: {
           css: {
             color: 'var(--colorPrimary)',
+            '--tw-prose-headings': theme('colors.primary'),
+            '--tw-prose-links': 'inherit',
+            '--tw-prose-bullets': theme('colors.highlight'),
           },
         },
-      },
+      }),
     },
   },
   corePlugins,
