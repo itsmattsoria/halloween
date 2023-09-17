@@ -72,3 +72,30 @@ const bodyClasses = bodyClass + ' py-m';
 		}
 	}
 </style>
+<script>
+    import "lazysizes";
+  import mediumZoom from "medium-zoom";
+  import Masonry from "masonry-layout";
+
+  mediumZoom("[data-zoomable]", {
+    margin: 10,
+    background: "var(--colorSecondary)",
+    template: '#zoom-template',
+    container: '#zoom-container'
+  });
+
+  let elem = document.querySelector(".masonry-grid");
+  let msnry = new Masonry(elem, {
+    columnWidth: ".grid-item:first-child",
+    itemSelector: ".grid-item",
+    percentPosition: true,
+    gutter: 60,
+    transitionDuration: 0,
+  });
+
+  const update = function () {
+    msnry.layout();
+  };
+
+  elem.addEventListener("load", update, true);
+</script>
