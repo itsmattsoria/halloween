@@ -1,4 +1,5 @@
 const corePlugins = require('./theme/config/corePlugins');
+const spacing = require('./theme/spacing');
 const typography = require('@tailwindcss/typography');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
@@ -7,6 +8,7 @@ module.exports = {
   content: ['./src/**/*.{astro,html,js}'],
   theme: {
     extend: {
+      spacing,
       body: {
         margin: '0.25rem',
       },
@@ -21,8 +23,18 @@ module.exports = {
         highlight: 'var(--colorHighlight)',
       },
       fontFamily: {
-        sans: ['ATC Overlook', ...defaultTheme.fontFamily.sans],
-        display: ['Macabre', ...defaultTheme.fontFamily.serif],
+        sans: 'ATC Overlook, sans-serif',
+        display: 'Macabre, serif',
+      },
+      fontSize: {
+        xs: 'var(--step--1)',
+        sm: 'var(--step-0)',
+        base: 'var(--step-1)',
+        lg: 'var(--step-2)',
+        xl: 'var(--step-3)',
+        '2xl': 'var(--step-4)',
+        '3xl': 'var(--step-5)',
+        '4xl': 'var(--step-6)',
       },
       borderRadius: {
         DEFAULT: '0.5rem',
@@ -34,6 +46,30 @@ module.exports = {
             '--tw-prose-headings': theme('colors.primary'),
             '--tw-prose-links': 'inherit',
             '--tw-prose-bullets': theme('colors.highlight'),
+            h1: {
+              fontFamily: theme('fontFamily.display'),
+              fontSize: 'var(--step-6)',
+            },
+            h2: {
+              fontFamily: theme('fontFamily.display'),
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              marginBottom: '0.05em',
+              color: theme('colors.highlight'),
+              fontSize: 'var(--step-6)',
+            },
+            p: {
+              fontSize: 'var(--step-2)',
+            },
+            li: {
+              fontSize: 'var(--step-2)',
+            },
+            '> ul > li > *:first-child': {
+              marginTop: '0',
+            },
+            '> ul > li > *:last-child': {
+              marginBottom: '0',
+            },
           },
         },
       }),

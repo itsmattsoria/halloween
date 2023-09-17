@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { title, bodyClass } = Astro.props;
-const bodyClasses = bodyClass + ' pb-24';
+const bodyClasses = bodyClass + ' py-m';
 ---
 
 <!doctype html>
@@ -33,7 +33,7 @@ const bodyClasses = bodyClass + ' pb-24';
 	.grit {
 		inset: 0;
 		z-index: 1000;
-    opacity: 0.2;
+    opacity: 0.25;
     position: fixed;
     mix-blend-mode: soft-light;
     image-rendering: pixelated;
