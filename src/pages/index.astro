@@ -10,7 +10,7 @@ const years = await getCollection('years');
 	<main class="container">
 		<h1 class="type-full leading-[0.8em] uppercase text-highlight -translate-x-[0.05em]" style="--scaler:15.9cqw;" transition:name="siteTitle">Halloween</h1>
 
-		<ol class="flex flex-wrap gap-y-6 justify-between gap-x-12">
+		<ol class="flex flex-wrap gap-6 justify-between ">
 			{years.reverse().map((year) => <li><a href={year.slug} class="text-4xl font-display" transition:name={year.data.title}>{year.data.title}</a></li>)}
 		</ol>
 
