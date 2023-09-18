@@ -22,7 +22,7 @@ const bodyClasses = bodyClass + ' py-m';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<ViewTransitions />
+		<!-- <ViewTransitions /> -->
 	</head>
 	<body class={bodyClasses}>
 		<slot />
@@ -73,29 +73,31 @@ const bodyClasses = bodyClass + ' py-m';
 	}
 </style>
 <script>
-    import "lazysizes";
-  import mediumZoom from "medium-zoom";
-  import Masonry from "masonry-layout";
+	import "lazysizes";
+	import mediumZoom from "medium-zoom";
+	import Masonry from "masonry-layout";
+	
+	mediumZoom("[data-zoomable]", {
+		margin: 10,
+		background: "var(--colorSecondary)",
+		template: '#zoom-template',
+		container: '#zoom-container'
+	});
 
-  mediumZoom("[data-zoomable]", {
-    margin: 10,
-    background: "var(--colorSecondary)",
-    template: '#zoom-template',
-    container: '#zoom-container'
-  });
-
-  let elem = document.querySelector(".masonry-grid");
-  let msnry = new Masonry(elem, {
-    columnWidth: ".grid-item:first-child",
-    itemSelector: ".grid-item",
-    percentPosition: true,
-    gutter: 60,
-    transitionDuration: 0,
-  });
-
-  const update = function () {
-    msnry.layout();
-  };
-
-  elem.addEventListener("load", update, true);
+	let elem = document.querySelector(".masonry-grid");
+	if (elem) {
+		let msnry = new Masonry(elem, {
+			columnWidth: ".grid-item:first-child",
+			itemSelector: ".grid-item",
+			percentPosition: true,
+			gutter: 60,
+			transitionDuration: 0,
+		});
+	
+		const update = function () {
+			msnry.layout();
+		};
+	
+		elem.addEventListener("load", update, true);
+	}
 </script>

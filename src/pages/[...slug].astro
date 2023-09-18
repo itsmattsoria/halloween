@@ -18,15 +18,17 @@ const images = entry.data.images;
 <BaseLayout url={entry.data.url}>
   <div class="container">
     <header class="mb-3xl">
-      <a href="/" class="text-highlight relative z-10">Back</a>
-      <h1 class="type-full leading-[0.8em] inline-flex gap-x-[0.2em]" style="--scaler:11.5vw;">
+      <div>
+        <a href="/" class="text-highlight relative z-10">Back</a>
+      </div>
+      <h1 class="type-full leading-[0.8em] inline-flex gap-x-[0.2em] -translate-x-[0.05em]" style="--scaler:12.3cqw;">
         <span class="uppercase text-highlight" transition:name="siteTitle">Halloween</span>
         <span class="font-display text-primary" transition:name={entry.data.title}>{entry.data.title}</span>
       </h1>
     </header>
     { images && (
       <template id="zoom-template">
-        <figure class="fixed inset-0 flex h-screen w-full">
+        <figure class="fixed inset-0 flex h-screen w-full z-100">
           <div id="zoom-container" class="w-full mx-auto h-[calc(100%_-_100px)]"></div>
         </figure>
       </template>
