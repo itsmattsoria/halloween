@@ -27,23 +27,25 @@ const images = entry.data.images;
       </h1>
     </header>
     { images && (
+      <section class="mb-2xl">
+        <h2 class="font-display uppercase text-highlight text-4xl">Did</h2>
+        <ul class="masonry-grid lg:w-[calc(100%_+_var(--space-l))]">
+          { images.map((image) => 
+            <li class="grid-item w-full lg:w-[calc(50%_-_var(--space-l))] mb-s lg:mb-xl">
+              <Image
+              url={image.url}
+              width={image.width}
+              height={image.height}
+              />
+            </li>
+          )}
+        </ul>  
+      </section>
       <template id="zoom-template">
         <figure class="fixed inset-0 flex h-screen w-full z-100">
           <div id="zoom-container" class="w-full mx-auto h-[calc(100%_-_100px)]"></div>
         </figure>
       </template>
-      <section class="mb-2xl">
-        <h2 class="font-display uppercase text-highlight text-4xl">Did</h2>
-        <div class="grid lg:grid-cols-2 gap-l items-start">
-          { images.map((image) => 
-            <Image
-            url={image.url}
-            width={image.width}
-            height={image.height}
-            />
-            )}
-        </div>  
-      </section>
     ) }
     <div class="prose">
       <Content />
