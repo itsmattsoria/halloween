@@ -85,11 +85,12 @@ const bodyClasses = bodyClass + ' py-m';
 		let elem = document.querySelector(".masonry-grid");
 		if (elem) {
 			let msnry = new Masonry(elem, {
-				columnWidth: ".grid-item:first-child",
+				columnWidth: ".grid-sizer",
 				itemSelector: ".grid-item",
 				percentPosition: true,
-				gutter: 60,
+				gutter: '.gutter-sizer',
 				transitionDuration: 0,
+				percentPosition: true
 			});
 		
 			const update = function () {

@@ -1,6 +1,7 @@
 const corePlugins = require('./theme/config/corePlugins');
 const spacing = require('./theme/spacing');
 const typography = require('@tailwindcss/typography');
+const containerQueries = require('@tailwindcss/container-queries');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
@@ -76,5 +77,5 @@ module.exports = {
     },
   },
   corePlugins,
-  plugins: [typography],
+  plugins: [typography, containerQueries],
 };
