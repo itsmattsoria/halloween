@@ -16,6 +16,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 const images = entry.data.images;
 const movies = entry.data.movies;
+movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
 ---
 <BaseLayout url={entry.data.url}>
   <div class="container">
