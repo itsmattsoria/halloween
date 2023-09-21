@@ -1,9 +1,73 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection, getEntry } from 'astro:content';
-import Card from '../components/Card.astro';
+import MovieCard from '../components/MovieCard.astro';
 
 const years = await getCollection('years');
+
+const allTimeMovies = [
+	{
+		title: 'Halloween',
+		year: 1978,
+		url: 'https://www.imdb.com/title/tt0077651/',
+		poster: 'v1695301098/halloween/all-time/halloween-1978_wyqwb9.jpg',
+		rating: '🔪🔪🔪🔪'
+	}, {
+		title: 'The Shining',
+		year: 1980,
+		url: 'https://www.imdb.com/title/tt0081505/',
+		poster: 'v1695301503/halloween/all-time/The-Shining_yem2ai.avif',
+		rating: '🔪🔪🔪🔪'
+	}, {
+		title: 'Susperia',
+		year: 1977,
+		url: 'https://www.imdb.com/title/tt0076786/',
+		poster: 'v1695301620/halloween/all-time/suspiria-still-1_fc5ly0.jpg',
+		rating: '🔪🔪🔪🔪'
+	}, {
+		title: 'Psycho',
+		year: 1960,
+		url: 'https://www.imdb.com/title/tt0054215/',
+		poster: 'v1695301857/halloween/all-time/psycho_d0sufs.jpg',
+		rating: '🔪🔪🔪🔪'
+	}, {
+		title: 'The Texas Chainsaw Massacre',
+		year: 1974,
+		url: 'https://www.imdb.com/title/tt0072271/',
+		poster: 'v1695301926/halloween/all-time/texaschainsawmassacre_eoaznj.jpg',
+		rating: '🔪🔪🔪🔪'
+	}, {
+		title: 'The Exorcist',
+		year: 1973,
+		url: 'https://www.imdb.com/title/tt0070047/',
+		poster: 'v1695302075/halloween/all-time/theexorcist_vco09w.jpg',
+		rating: '🔪🔪🔪🔪'
+	}, {
+		title: 'Hellraiser',
+		year: 1987,
+		url: 'https://www.imdb.com/title/tt0093177/',
+		poster: 'v1695302512/halloween/all-time/hellraiser_nm5jos.jpg',
+		rating: '🔪🔪🔪🔪'
+	}, {
+		title: 'Silence of the Lambs',
+		year: 1991,
+		url: 'https://www.imdb.com/title/tt0102926/',
+		poster: 'v1695302592/halloween/all-time/silenceofthelambs_ncufrl.jpg',
+		rating: '🔪🔪🔪🔪'
+	}, {
+		title: 'The Amitiville Horror',
+		year: 1979,
+		url: 'https://www.imdb.com/title/tt0078767/',
+		poster: 'v1695302822/halloween/all-time/The_Amityville_Horror_79_uhd_3_cdkkgt.png',
+		rating: '🔪🔪🔪🔪'
+	}, {
+		title: 'Night of the Living Dead',
+		year: 1968,
+		url: 'https://www.imdb.com/title/tt0063350/',
+		poster: 'v1695302896/halloween/all-time/nightofthelivingdead_cootse.jpg',
+		rating: '🔪🔪🔪🔪'
+	}
+]
 ---
 
 <BaseLayout title="Halloween 🎃">
@@ -17,25 +81,19 @@ const years = await getCollection('years');
 		<h2 class="text-4xl text-highlight mt-2xl leading-none mb-xl">All Time Favorites</h2>
 
 		<div class="grid gap-xl lg:grid-cols-2">
-			<section>
+			<section class="flex flex-col">
 				<h3 class="text-4xl font-display uppercase text-highlight">Music</h3>
-				<div class="max-w-prose">
-					<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2YRiadmpeea27oT4GeXRZx?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-				</div>
+				<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2YRiadmpeea27oT4GeXRZx?utm_source=generator&theme=0" width="100%" height="auto" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="min-h-[500px] grow"></iframe>
 			</section>
 			
-			<section>
-				<h3 class="text-4xl font-display uppercase text-highlight">Movies</h3>
-				<div class="prose">
-					<ul>
-						<li>Halloween (1978)</li>
-						<li>Hellraiser (1987)</li>
-						<li>Susperia (1977)</li>
-						<li>Silence of The Lambs</li>
-						<li>The Exorcist</li>
+			{ allTimeMovies && (
+				<section>
+					<h3 class="text-4xl font-display uppercase text-highlight">Movies</h3>
+					<ul class="grid gap-s md:grid-cols-2">
+						{allTimeMovies.map((movie) => <MovieCard movie={movie} />)}
 					</ul>
-				</div>
-			</section>
+				</section>
+			)}
 		</div>
 	</main>
 </BaseLayout>
