@@ -1,11 +1,24 @@
 @font-face {
   font-family: 'ATC Overlook';
+  src: url('/fonts/ATCOverlook-Medium.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+}
+@font-face {
+  font-family: 'ATC Overlook';
+  src: url('/fonts/ATCOverlook-MediumItalic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: fallback;
+}
+@font-face {
+  font-family: 'ATC Overlook';
   src: url('/fonts/ATCOverlook-Heavy.woff') format('woff');
   font-weight: 900;
   font-style: normal;
   font-display: fallback;
 }
-
 @font-face {
   font-family: 'ATC Overlook';
   src: url('/fonts/ATCOverlook-HeavyItalic.woff') format('woff');

@@ -8,7 +8,7 @@ let LQIPholder = "f_jpg,q_50,w_600,e_blur:2000/";
 let xFmPart1 = "f_auto,q_auto:eco,w_";
 let xFmPart2 = ",x_0,z_1/"; // note ending slash
 
-const { url, alt, width, height, effects, containerClasses, imgClasses } = Astro.props;
+const { url, alt, width, height, zoomable, effects, containerClasses, imgClasses } = Astro.props;
 const effectsString = effects ? effects : "";
 const additionalContainerClasses = containerClasses ? containerClasses : "";
 const additionalImgClasses = imgClasses ? imgClasses : "";
@@ -105,7 +105,7 @@ End, LQIP-to-Base64
     width={width}
     height={height}
     sizes={dataSzes}
-    data-zoomable
+    data-zoomable={zoomable}
     data-pagefind-ignore
   />
 </div>

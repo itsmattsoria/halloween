@@ -31,14 +31,39 @@ module.exports = {
         xs: 'var(--step--1)',
         sm: 'var(--step-0)',
         base: 'var(--step-1)',
-        lg: 'var(--step-2)',
-        xl: 'var(--step-3)',
-        '2xl': 'var(--step-4)',
-        '3xl': 'var(--step-5)',
-        '4xl': 'var(--step-6)',
+        lg: [
+          'var(--step-2)',
+          {
+            fontWeight: 'bold',
+          },
+        ],
+        xl: [
+          'var(--step-3)',
+          {
+            fontWeight: 'bold',
+          },
+        ],
+        '2xl': [
+          'var(--step-4)',
+          {
+            fontWeight: 'bold',
+          },
+        ],
+        '3xl': [
+          'var(--step-5)',
+          {
+            fontWeight: 'bold',
+          },
+        ],
+        '4xl': [
+          'var(--step-6)',
+          {
+            fontWeight: 'bold',
+          },
+        ],
       },
       borderRadius: {
-        DEFAULT: '0.5rem',
+        DEFAULT: '0.35rem',
       },
       typography: ({ theme }) => ({
         DEFAULT: {

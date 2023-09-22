@@ -75,29 +75,24 @@ const bodyClasses = bodyClass + ' py-m';
 <script>
 	import "lazysizes";
   import mediumZoom from "medium-zoom";
-	import Masonry from "masonry-layout";
+	let zoom;
+	let inited = false;
   
 	const init = () => {
-		initMasonry();
+		if (inited) {
+			zoom.detach();
+		}
+		// initMediumZoom();
+		inited = true;
 	}
 
-	const initMasonry = () => {
-		let elem = document.querySelector(".masonry-grid");
-		if (elem) {
-			let msnry = new Masonry(elem, {
-				columnWidth: ".grid-sizer",
-				itemSelector: ".grid-item",
-				percentPosition: true,
-				gutter: '.gutter-sizer',
-				transitionDuration: 0,
-			});
-		
-			const update = function () {
-				msnry.layout();
-			};
-		
-			elem.addEventListener("load", update, true);
-		}
+	const initMediumZoom = () => {
+		zoom = mediumZoom('[data-zoomable]', {
+			margin: 24,
+			background: 'var(--colorSecondary)',
+			scrollOffset: 0,
+			template: '#zoom-template',
+		});
 	}
 
 	init();

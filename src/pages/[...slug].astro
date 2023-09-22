@@ -32,15 +32,14 @@ movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
     { images && (
       <section class="mb-2xl">
         <h2 class="font-display uppercase text-highlight text-4xl">Did</h2>
-        <ul class="masonry-grid w-[calc(100%_+_var(--space-s))] md:w-[calc(100%_+_var(--space-m))] lg:w-[calc(100%_+_var(--space-l))]">
-          <div class="gutter-sizer w-s md:w-m lg:w-lg"></div>
-          <div class="grid-sizer w-full md:w-[calc(50%_-_var(--space-m))] lg:w-[calc(33.3333%_-_var(--space-l))]"></div>
+        <ul class="md:columns-2 gap-x-s lg:gap-x-m lg:columns-3">
           { images.map((image) => 
-            <li class="grid-item w-full md:w-[calc(50%_-_var(--space-m))] lg:w-[calc(33.3333%_-_var(--space-l))] mb-s lg:mb-xl">
+            <li class="grid-item w-full mb-s lg:mb-m">
               <Image
-              url={image.url}
-              width={image.width}
-              height={image.height}
+                url={image.url}
+                width={image.width}
+                height={image.height}
+                zoomable={true}
               />
             </li>
           )}
@@ -55,7 +54,7 @@ movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
     { movies && (
       <section class="mb-2xl">
         <h2 class="font-display uppercase text-highlight text-4xl">Watched</h2>
-        <ul class="grid gap-m md:grid-cols-2 lg:grid-cols-3">
+        <ul class="grid gap-s lg:gap-m md:grid-cols-2 lg:grid-cols-3">
           { movies.map((movie) => 
             <MovieCard movie={movie} />
           )}

@@ -10,20 +10,21 @@ const { movie } = Astro.props;
 ---
 
 <li class="@container rounded bg-highlight text-secondary p-s">
-  <div class="grid @[400px]:grid-cols-2 gap-s">
+  <div class="grid @[400px]:grid-cols-2 gap-s lg:@[400px]:h-full">
     { movie.poster && (
       <Image
       url={movie.poster}
       width="600"
       height="600"
+      zoomable={false}
       effects='e_grayscale/e_brightness:15/e_contrast:level_-100,e_tint:100:140C10:E2703A/'
-      containerClasses="aspect-square"
+      containerClasses="aspect-square lg:@[400px]:aspect-auto"
       imgClasses="object-cover h-full"
       />
     )}
     <div>
       <h2 class="text-xl leading-none"><a class="hover:text-secondary focus-visible:text-secondary" href={ movie.url }>{ movie.title }</a></h2>
-      <div class="text-sm">{ movie.year }</div>
+      <div class="text-sm tracking-wide">{ movie.year }</div>
       <div class="text-base">{ movie.rating }</div>
     </div>
   </div>

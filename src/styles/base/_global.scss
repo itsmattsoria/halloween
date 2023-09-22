@@ -23,11 +23,11 @@ body {
 .container {
   container: container / inline-size;
   margin-inline: auto;
-  max-width: 90rem;
-  padding-inline: 0.5rem;
+  max-width: 92rem;
+  padding-inline: theme('spacing.s');
 
   @screen lg {
-    padding-inline: 1.5rem;
+    padding-inline: theme('spacing.m');
   }
 }
 
