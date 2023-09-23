@@ -40,28 +40,28 @@ img {
   max-width: 100%;
 }
 
-a {
-  position: relative;
-  display: inline-block;
-  &::after {
-    opacity: 0;
-    content: '🎃';
-    font-size: 0.65em;
-    position: absolute;
-    inset-block-start: 50%;
-    inset-inline-start: 50%;
-    transform: translate(-50%, -50%);
-    padding-inline-start: 0.25em;
-  }
+// a {
+//   position: relative;
+//   display: inline-block;
+//   &::after {
+//     opacity: 0;
+//     content: '🎃';
+//     font-size: 0.65em;
+//     position: absolute;
+//     inset-block-start: 50%;
+//     inset-inline-start: 50%;
+//     transform: translate(-50%, -50%);
+//     padding-inline-start: 0.25em;
+//   }
 
-  &:hover,
-  &:focus-visible {
-    color: theme('colors.highlight');
-    &::after {
-      opacity: 1;
-    }
-  }
-}
+//   &:hover,
+//   &:focus-visible {
+//     color: theme('colors.highlight');
+//     &::after {
+//       opacity: 1;
+//     }
+//   }
+// }
 
 img.lazyload:not([src]) {
   visibility: hidden;

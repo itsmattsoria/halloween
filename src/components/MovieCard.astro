@@ -1,5 +1,6 @@
 ---
 import Image from '../components/CloudImage.astro';
+import SpookyLink from '../components/SpookyLink.astro';
 
 interface Props {
 	movie: object;
@@ -18,12 +19,14 @@ const { movie } = Astro.props;
       height="600"
       zoomable={false}
       effects='e_grayscale/e_brightness:15/e_contrast:level_-100,e_tint:100:140C10:E2703A/'
-      containerClasses="aspect-square lg:@[400px]:aspect-auto"
+      containerClasses="aspect-square lg:@[400px]:aspect-auto lg:@[400px]:min-h-[50cqw]"
       imgClasses="object-cover h-full"
       />
     )}
     <div>
-      <h2 class="text-xl leading-none"><a class="hover:text-secondary focus-visible:text-secondary" href={ movie.url }>{ movie.title }</a></h2>
+      <h2 class="text-xl leading-none">
+        <SpookyLink href={ movie.url } text={ movie.title } />
+      </h2>
       <div class="text-sm tracking-wide">{ movie.year }</div>
       <div class="text-base">{ movie.rating }</div>
     </div>
