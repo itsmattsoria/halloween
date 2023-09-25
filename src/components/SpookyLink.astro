@@ -5,45 +5,65 @@ interface Props {
   text: string;
 }
 
-const { href, class, text } = Astro.props;
+const { href, class, text, attributes } = Astro.props;
 
 let classes = 'group/link relative inline-block transition-colors duration-250 ease-out hover:text-secondary focus-visible:text-secondary';
 
-const spookyCharacters = [
-  '👻',
-  '🎃',
-  '🕷',
-  '🕸',
-  '🦇',
-  '🧛‍♂️',
-  '🧟‍♂️',
-  '🔪'
-];
+---
+<astro-spookylink data-text={text}>
+  <a href={href} class={classes} aria-label={text}>
+    <Fragment set:html={text} />
+  </a>
+</astro-spookylink>
 
-function spookyChar() {
-  return spookyCharacters[Math.floor(Math.random()*spookyCharacters.length)];
-}
+<script>
+  class AstroSpookylink extends HTMLElement {
+    constructor() {
+      super();
+      this.link = this.querySelector('a');
+      this.text = this.dataset.text;
+      this.words = this.text.split(' ');
+      this.spookyText = '';
+      this.spookyCharacters = [
+        '👻',
+        '🎃',
+        '🕷',
+        '🕸',
+        '🦇',
+        '🧛‍♂️',
+        '🧟‍♂️',
+        '🔪'
+      ];
 
-let words = text.split(' ');
-let spookyText = '';
-for (let w = 0; w < words.length; w++) {
-  spookyText += '<span class="whitespace-nowrap">';
-  
-    for (let c = 0; c < words[w].length; c++) {
-      if (words[w].charAt(c) === 'a' || words[w].charAt(c) === 'e' || words[w].charAt(c) === 'i' || words[w].charAt(c) === 'o' || words[w].charAt(c) === 'u' || words[w].charAt(c) === 'A' || words[w].charAt(c) === 'E' || words[w].charAt(c) === 'I' || words[w].charAt(c) === 'O' || words[w].charAt(c) === 'U') {
-        spookyText += '<span class="relative"><span class="transition-opacity duration-250 ease-out group-hover/link:opacity-0 group-focus-visible/link:opacity-0">' + words[w].charAt(c) + '</span><span class="transition-opacity duration-250 ease-out opacity-0 group-hover/link:opacity-100 group-focus-visible/link:opacity-100 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.65]">' + spookyChar() + '</span></span>';
-      } else {
-        spookyText += '<span>' + words[w].charAt(c) + '</span>';
-      }
+      this.init();
     }
 
-  spookyText += '</span>';
+    init() {
+      for (let w = 0; w < this.words.length; w++) {
+        this.spookyText += '<span class="whitespace-nowrap">';
+        
+          for (let c = 0; c < this.words[w].length; c++) {
+            if (this.words[w].charAt(c) === 'a' || this.words[w].charAt(c) === 'e' || this.words[w].charAt(c) === 'i' || this.words[w].charAt(c) === 'o' || this.words[w].charAt(c) === 'u' || this.words[w].charAt(c) === 'A' || this.words[w].charAt(c) === 'E' || this.words[w].charAt(c) === 'I' || this.words[w].charAt(c) === 'O' || this.words[w].charAt(c) === 'U') {
+              this.spookyText += '<span class="relative"><span class="transition-opacity duration-250 ease-out group-hover/link:opacity-0 group-focus-visible/link:opacity-0">' + this.words[w].charAt(c) + '</span><span class="transition-opacity duration-250 ease-out opacity-0 group-hover/link:opacity-100 group-focus-visible/link:opacity-100 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.65]">' + this.spookyChar() + '</span></span>';
+            } else {
+              this.spookyText += '<span>' + this.words[w].charAt(c) + '</span>';
+            }
+          }
 
-  if (w < words.length - 1) {
-    spookyText += '<span> </span>';
+        this.spookyText += '</span>';
+
+        if (w < this.words.length - 1) {
+          this.spookyText += '<span> </span>';
+        }
+      }
+      
+      this.link.innerHTML = this.spookyText;
+    }
+
+    spookyChar = () => {
+      return this.spookyCharacters[Math.floor(Math.random()*this.spookyCharacters.length)];
+    }
   }
-}
----
-<a href={href} class={classes} aria-label={text}>
-  <Fragment set:html={spookyText} />
-</a>
+
+  customElements.define('astro-spookylink', AstroSpookylink);
+</script>

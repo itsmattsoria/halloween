@@ -8,9 +8,13 @@ interface Props {
 
 
 const { movie } = Astro.props;
+const linkAttrs = {
+  'data-card': '',
+  rel: 'noopener noreferrer',
+};
 ---
 
-<li class="@container rounded bg-highlight text-secondary p-s">
+<li class="@container rounded bg-highlight text-secondary p-s" data-card>
   <div class="grid @[400px]:grid-cols-2 gap-s lg:@[400px]:h-full">
     { movie.poster && (
       <Image
@@ -25,7 +29,7 @@ const { movie } = Astro.props;
     )}
     <div>
       <h2 class="text-xl leading-none">
-        <SpookyLink href={ movie.url } text={ movie.title } />
+        <SpookyLink href={ movie.url } text={ movie.title } attributes={ linkAttrs } />
       </h2>
       <div class="text-sm tracking-wide">{ movie.year }</div>
       <div class="text-base">{ movie.rating }</div>
