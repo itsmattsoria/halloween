@@ -103,5 +103,41 @@ movies:
       rating: '🔪🔪🔪',
       poster: 'v1695755523/halloween/all-time/halloween-3-season-of-the-witch-pumpkin-mask-social-feature_dhtxpi.avif',
     },
+    {
+      title: 'Halloween 4: The Return of Michael Myers',
+      url: 'https://www.imdb.com/title/tt0095271/',
+      year: 1988,
+      rating: '🔪🔪🔪',
+    },
+    {
+      title: 'Halloween 5: The Revenge of Michael Myers',
+      url: 'https://www.imdb.com/title/tt0097474/',
+      year: 1989,
+      rating: '🔪🔪🔪',
+    },
+    {
+      title: 'Halloween: The Curse of Michael Myers',
+      url: 'https://www.imdb.com/title/tt0113253/',
+      year: 1995,
+      rating: '🔪🔪',
+    },
+    {
+      title: 'Halloween: Resurrection',
+      url: 'https://www.imdb.com/title/tt0220506/',
+      year: 2002,
+      rating: '🔪',
+    },
+    {
+      title: 'Halloween',
+      url: 'https://www.imdb.com/title/tt0373883/',
+      year: 2007,
+      rating: '🔪',
+    },
+    {
+      title: 'Halloween II',
+      url: 'https://www.imdb.com/title/tt1311067/',
+      year: 2009,
+      rating: '🔪',
+    },
   ]
 ---

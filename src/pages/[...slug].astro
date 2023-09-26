@@ -3,6 +3,7 @@ import { Debug } from 'astro:components';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import Image from '../components/CloudImage.astro';
+import Video from '../components/CloudVideo.astro';
 import MovieCard from '../components/MovieCard.astro';
 
 export async function getStaticPaths() {
@@ -35,12 +36,15 @@ movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
         <ul class="md:columns-2 gap-x-s lg:gap-x-m lg:columns-3">
           { images.map((image) => 
             <li class="grid-item w-full mb-s lg:mb-m">
-              <Image
-                url={image.url}
-                width={image.width}
-                height={image.height}
-                zoomable={true}
-              />
+              { image.url.includes('.mov') ? 
+                <Video src={image.url} /> :
+                <Image
+                  url={image.url}
+                  width={image.width}
+                  height={image.height}
+                  zoomable={true}
+                />
+              }
             </li>
           )}
         </ul>  

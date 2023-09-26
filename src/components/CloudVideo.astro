@@ -1,0 +1,32 @@
+---
+import { Cloudinary, CloudinaryImage } from "@cloudinary/url-gen";
+import { Resize } from "@cloudinary/url-gen/actions";
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: import.meta.env.CLOUDNAME,
+  },
+});
+const { src, ...props } = Astro.props;
+
+let filename = src.replace(".mov", "");
+let posterImage = cld.image(filename + ".jpg").setAssetType("video");
+
+let cldSrc = cld.video(src);
+cldSrc.setDeliveryType("fetch");
+
+interface Props {
+  src: string;
+  width: string;
+  height: string;
+}
+---
+
+<video
+  preload="none"
+  class="w-full"
+  controls
+  poster={posterImage.publicID}
+  {...props}
+>
+  <source src={cldSrc.toURL()} type="video/mp4" />
+</video>

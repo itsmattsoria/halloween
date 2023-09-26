@@ -20,7 +20,6 @@ years.map((year) => {
       movies.push(movieCopy);
     } else {
       const existingMovie = movies[existingMovieIndex];
-      console.log(existingMovie, movieCopy);
       if (existingMovie.year !== movieCopy.year) {
         movies.push(movieCopy);
       }
