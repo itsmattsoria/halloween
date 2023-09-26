@@ -8,17 +8,19 @@ const firstYear = years[0].data.title;
 const lastYear = years[years.length - 1].data.title;
 let movies = [];
 
-years.map(async (year) => {
+years.map((year) => {
   const yearMovies = year.data.movies.map((movie) => {
     let movieCopy = Object.assign({}, movie);
     const existingMovieIndex = movies.findIndex((m) => m.title === movieCopy.title);
-    movieCopy.watched = year.data.title;
+    if (year.data.title !== 'All Time') {
+      movieCopy.watched = year.data.title;
+    }
 
     if (existingMovieIndex === -1) {
       movies.push(movieCopy);
     } else {
       const existingMovie = movies[existingMovieIndex];
-
+      console.log(existingMovie, movieCopy);
       if (existingMovie.year !== movieCopy.year) {
         movies.push(movieCopy);
       }
@@ -43,7 +45,7 @@ const options = [ 'title', 'year', 'rating' ];
 
 		{ movies && (
       <section class="mb-2xl">
-        <h2 class="font-display uppercase text-highlight text-4xl">All Movies Watched {firstYear}-{lastYear}</h2>
+        <h2 class="font-display uppercase text-highlight text-4xl mb-m">All Movies Watched {firstYear}-{lastYear}</h2>
         <astro-sort-list id="sort-list" data-value-names={options}>
           <div class="flex items-start flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-4">
             <div class="flex gap-4">
@@ -95,7 +97,7 @@ const options = [ 'title', 'year', 'rating' ];
         this.movieList.classList.add('list-view');
         this.movieCards.forEach((card) => {
           card.classList.add('list-view');
-          card.querySelector('.poster').classList.add('list-view');
+          card.querySelector('.poster')?.classList.add('list-view');
         });
       } else {
         this.viewToggle.dataset.view = 'grid';
@@ -103,7 +105,7 @@ const options = [ 'title', 'year', 'rating' ];
         this.movieList.classList.remove('list-view');
         this.movieCards.forEach((card) => {
           card.classList.remove('list-view');
-          card.querySelector('.poster').classList.remove('list-view');
+          card.querySelector('.poster')?.classList.remove('list-view');
         });
       }
     }

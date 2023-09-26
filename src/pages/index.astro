@@ -3,7 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection, getEntry } from 'astro:content';
 import MovieCard from '../components/MovieCard.astro';
 
-const years = await getCollection('years');
+let years = await getCollection('years');
+years = years.filter((year) => year.data.title !== 'All Time');
 
 const allTimeMovies = [
 	{
@@ -75,7 +76,7 @@ const allTimeMovies = [
 		<h1 class="type-full uppercase text-highlight -translate-x-[0.05em]" style="--scaler:15.9cqw;" transition:name="siteTitle">Halloween</h1>
 
 		<ol class="flex flex-wrap gap-6 justify-between ">
-			{years.reverse().map((year) => <li><a href={year.slug} class="text-4xl font-display" transition:name={year.data.title}>{year.data.title}</a></li>)}
+			{years.reverse().map((year) => <li><a href={year.slug} class="text-4xl transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.data.title}>{year.data.title}</a></li>)}
 		</ol>
 
 		<h2 class="text-4xl text-highlight mt-2xl leading-none mb-xl">All Time Favorites</h2>
