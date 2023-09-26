@@ -6,7 +6,6 @@ interface Props {
 	movie: object;
 }
 
-
 const { movie } = Astro.props;
 const linkAttrs = {
   'data-card': '',
@@ -15,7 +14,7 @@ const linkAttrs = {
 };
 ---
 
-<li class="@container rounded bg-highlight text-secondary p-s" data-card>
+<li class="movie-card @container rounded bg-highlight text-secondary p-s" data-card>
   <div class="grid @[400px]:grid-cols-2 gap-s lg:@[400px]:h-full">
     { movie.poster && (
       <Image
@@ -24,17 +23,59 @@ const linkAttrs = {
       height="600"
       zoomable={false}
       effects='e_grayscale/e_brightness:15/e_contrast:level_-100,e_tint:100:140C10:E2703A/'
-      containerClasses="aspect-square lg:@[400px]:aspect-auto lg:@[400px]:min-h-[50cqw]"
+      containerClasses="poster aspect-square lg:@[400px]:aspect-auto lg:@[400px]:min-h-[50cqw]"
       imgClasses="object-cover h-full"
       />
     )}
-    <div>
-      <h2 class="text-xl leading-none">
-        <span class="sr-only title">{ movie.title }</span>
-        <SpookyLink href={ movie.url } text={ movie.title } attributes={ linkAttrs } />
-      </h2>
-      <div class="text-sm tracking-wide year">{ movie.year }</div>
-      <div class="text-base rating">{ movie.rating }</div>
+    <div class="text-container flex flex-col justify-between gap-4">
+      <div>
+        <h2 class="text-xl leading-none">
+          <span class="sr-only title">{ movie.title }</span>
+          <SpookyLink href={ movie.url } text={ movie.title } attributes={ linkAttrs } />
+        </h2>
+        <div class="text-sm year">{ movie.year }</div>
+        <div class="text-base rating">{ movie.rating }</div>
+      </div>
+      { movie.watched && (
+        <a href={movie.watched} class="text-xs italic tracking-tight underline-offset-2 hover:underline focus-visible:underline">watched in {movie.watched}</a>
+      )}
     </div>
   </div>
 </li>
+<style>
+  .movie-card.list-view {
+    border-radius: 0;
+    background-color: transparent;
+
+    > div {
+      display: flex;
+      gap: theme('spacing.s');
+    }
+
+    + .movie-card.list-view {
+      border-top: 1px solid theme('colors.secondary');
+    }
+
+    .text-container {
+      width: 100%;
+
+      > div {
+        display: flex;
+        flex: 1 1 auto;
+        gap: theme('spacing.s');
+      }
+
+      h2 {
+        flex: 0 0180%;
+        font-size: theme('fontSize.lg');
+      }
+
+      .year,
+      .rating {
+        flex: 1 0 10%;
+        text-align: right;
+        white-space: nowrap;
+      }
+    }
+  }
+</style>
