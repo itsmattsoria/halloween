@@ -88,7 +88,10 @@ const allTimeMovies = [
 			
 			{ allTimeMovies && (
 				<section>
-					<h3 class="text-4xl font-display uppercase text-highlight">Movies</h3>
+					<div class="flex justify-between items-end gap-2 pb-s">
+						<h3 class="text-4xl font-display uppercase text-highlight leading-none">Movies</h3>
+						<a href="/movie-index" class="text-lg leading-none underline underline-offset-4 hover:text-highlight focus-visible:text-highlight">Movie Index</a>
+					</div>
 					<ul class="grid gap-s md:grid-cols-2">
 						{allTimeMovies.map((movie) => <MovieCard movie={movie} />)}
 					</ul>

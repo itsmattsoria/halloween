@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection, getEntry } from 'astro:content';
+import MovieCard from '../components/MovieCard.astro';
+
+const years = await getCollection('years');
+const movies = [];
+const firstYear = years[0].data.title;
+const lastYear = years[years.length - 1].data.title;
+
+years.map(async (year) => {
+  const yearMovies = year.data.movies.map(async (movie) => {
+    movies.push(movie);
+  });
+});
+movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
+---
+
+<BaseLayout title="Halloween 🎃">
+	<main class="container pb-3xl">
+    <header class="mb-3xl">
+      <div>
+        <a href="/" class="text-highlight relative z-10">Back</a>
+        <h1 class="type-full inline-flex gap-x-[0.2em] -translate-x-[0.05em]" style="--scaler:9.8cqw;">
+          <span class="uppercase text-highlight" transition:name="siteTitle">Halloween</span>
+          <span class="font-display text-primary" transition:name="Movie Index">Movie Index</span>
+        </h1>
+      </div>
+    </header>
+
+		{ movies && (
+      <section class="mb-2xl">
+        <h2 class="font-display uppercase text-highlight text-4xl">All Movies Watched {firstYear}-{lastYear}</h2>
+        <ul class="grid gap-s lg:gap-m md:grid-cols-2 lg:grid-cols-3">
+          { movies.map((movie) => 
+            <MovieCard movie={movie} />
+          )}
+        </ul>  
+      </section>
+    ) }
+	</main>
+</BaseLayout>
