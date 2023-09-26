@@ -10,6 +10,7 @@ interface Props {
 const { movie } = Astro.props;
 const linkAttrs = {
   'data-card': '',
+  'aria-hidden': 'true',
   rel: 'noopener noreferrer',
 };
 ---
@@ -29,10 +30,11 @@ const linkAttrs = {
     )}
     <div>
       <h2 class="text-xl leading-none">
+        <span class="sr-only title">{ movie.title }</span>
         <SpookyLink href={ movie.url } text={ movie.title } attributes={ linkAttrs } />
       </h2>
-      <div class="text-sm tracking-wide">{ movie.year }</div>
-      <div class="text-base">{ movie.rating }</div>
+      <div class="text-sm tracking-wide year">{ movie.year }</div>
+      <div class="text-base rating">{ movie.rating }</div>
     </div>
   </div>
 </li>

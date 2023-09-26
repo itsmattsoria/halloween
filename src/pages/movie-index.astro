@@ -14,6 +14,7 @@ years.map(async (year) => {
   });
 });
 movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
+const options = [ 'title', 'year', 'rating' ];
 ---
 
 <BaseLayout title="Halloween 🎃">
@@ -31,12 +32,56 @@ movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
 		{ movies && (
       <section class="mb-2xl">
         <h2 class="font-display uppercase text-highlight text-4xl">All Movies Watched {firstYear}-{lastYear}</h2>
-        <ul class="grid gap-s lg:gap-m md:grid-cols-2 lg:grid-cols-3">
-          { movies.map((movie) => 
-            <MovieCard movie={movie} />
-          )}
-        </ul>  
+        <astro-sort-list id="sort-list" data-value-names={options}>
+          <div class="flex gap-4 mb-4">
+            <div class="text-lg">Sort by:</div>
+            { options && options.map((option, index) => (
+              index === 0 ? <button class="sort text-lg asc" data-sort={option}>{option}</button> : <button class="sort text-lg" data-sort={option} data-default-order="desc">{option}</button>
+            ))}
+          </div>
+          <ul class="list grid gap-s lg:gap-m md:grid-cols-2 lg:grid-cols-3">
+            { movies.map((movie) => 
+              <MovieCard movie={movie} />
+            )}
+          </ul>
+        </astro-sort-list>
       </section>
     ) }
 	</main>
 </BaseLayout>
+<script>
+  import List from 'list.js';
+
+  class AstroSortList extends HTMLElement {
+    constructor() {
+      super();
+      this.listOptions = {
+        valueNames: this.dataset.valueNames.split(',')
+      }
+
+      this.init();
+    }
+
+    init() {
+      this.sortList = new List(this, this.listOptions);
+    }
+  }
+
+  customElements.define('astro-sort-list', AstroSortList);
+</script>
+<style>
+  .sort {
+    &.asc, &.desc {
+      color: theme('colors.highlight');
+      text-decoration: underline;
+    }
+    &.asc:after {
+      content: ' ▲';
+      font-size: 0.65em;
+    }
+    &.desc:after {
+      content: ' ▼';
+      font-size: 0.65em;
+    }
+  }
+</style>
