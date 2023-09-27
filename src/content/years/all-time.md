@@ -334,5 +334,46 @@ movies:
       rating: '🔪🔪🔪',
       poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1695824563/halloween/all-time/bubba-ho-tep_qpy3jk.jpg',
     },
+    {
+      title: "The Devil's Rejects",
+      url: 'https://www.imdb.com/title/tt0395584/',
+      year: 2005,
+      rating: '🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1695851691/halloween/all-time/devils-rejects_fsm4zz.jpg',
+    },
+    {
+      title: 'House of 1000 Corpses',
+      url: 'https://www.imdb.com/title/tt0251736/',
+      year: 2003,
+      rating: '🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1695851694/halloween/all-time/house-of-1000-corpses_usbxrw.png',
+    },
+    {
+      title: 'The Village of the Damned',
+      url: 'https://www.imdb.com/title/tt0054443/',
+      year: 1960,
+      rating: '🔪🔪',
+    },
+    {
+      title: 'The Thing',
+      url: 'https://www.imdb.com/title/tt0084787/',
+      year: 1982,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1695851722/halloween/all-time/the-thing_rrzekx.jpg',
+    },
+    {
+      title: 'Poltiergeist',
+      url: 'https://www.imdb.com/title/tt0084516/',
+      year: 1982,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1695851689/halloween/all-time/poltergeist_zsxqt3.webp',
+    },
+    {
+      title: 'The Amityville Horror',
+      url: 'https://www.imdb.com/title/tt0384806/',
+      year: 2005,
+      rating: '🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1695851688/halloween/all-time/amityville-horror-2005_ms1or6.jpg',
+    },
   ]
 ---
