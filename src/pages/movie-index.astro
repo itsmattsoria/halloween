@@ -44,7 +44,7 @@ const options = [ 'title', 'year', 'rating' ];
       <section class="mb-2xl">
         <h2 class="font-display uppercase text-highlight text-4xl mb-m">All Movies Watched</h2>
         <astro-sort-list id="sort-list" data-value-names={options}>
-          <div class="flex items-start flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-4">
+          <div class="sticky top-0 z-30 bg-secondary flex items-start flex-col sm:flex-row sm:justify-between sm:items-end gap-4 py-2 mb-4">
             <div class="flex gap-4">
               <div class="text-lg">Sort by:</div>
               { options && options.map((option, index) => (
