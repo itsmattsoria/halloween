@@ -12,6 +12,7 @@ const { url, alt, width, height, zoomable, effects, containerClasses, imgClasses
 const effectsString = effects ? effects : "";
 const additionalContainerClasses = containerClasses ? containerClasses : "";
 const additionalImgClasses = imgClasses ? imgClasses : "";
+const formattedUrl = url.replace(cloudiBase, '');
 
 if (effectsString) {
   LQIPholder = LQIPholder + effectsString + "/";
@@ -20,7 +21,7 @@ if (effectsString) {
 const Srcset = respSizes
   .map((size) => {
     if (size <= width) {
-      return `${cloudiBase + xFmPart1 + size + xFmPart2 + effectsString + url } ${size}w`;
+      return `${cloudiBase + xFmPart1 + size + xFmPart2 + effectsString + formattedUrl } ${size}w`;
     }
   })
   .join(", ");
@@ -30,7 +31,7 @@ let divClass, imgClass, nscClass, dataSzes;
 divClass = `relative bkgdHandler rounded overflow-hidden ${additionalContainerClasses}`;
 dataSzes = `(min-width: 768px) 100vw, 50vw`;
 nscClass = `w-full h-auto`;
-imgClass = `w-full h-auto rounded-md animate-fade lazyload m-0 ${additionalImgClasses}`;
+imgClass = `w-full h-full rounded-md animate-fade lazyload m-0 ${additionalImgClasses}`;
 
 /*
 ================================================================
@@ -48,7 +49,7 @@ async function getBase64(urlFor64) {
   return Buffer.from(response.data, "binary").toString("base64");
 }
 
-let LQIP_b64 = await getBase64(cloudiBase + LQIPholder + url);
+let LQIP_b64 = await getBase64(cloudiBase + LQIPholder + formattedUrl);
 let imgBkgd = `url(data:image/jpeg;base64,${LQIP_b64})`;
 
 /*
@@ -97,7 +98,7 @@ End, LQIP-to-Base64
   <noscript data-pagefind-ignore>
     <img
       class={nscClass}
-      src={cloudiBase + xFmPart1 + "600" + xFmPart2 + url}
+      src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
       alt={alt}
       width={width}
       height={height}
@@ -105,7 +106,7 @@ End, LQIP-to-Base64
   </noscript>
   <img
     class={imgClass}
-    data-src={cloudiBase + xFmPart1 + "600" + xFmPart2 + url}
+    data-src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
     data-srcset={Srcset}
     alt={alt}
     width={width}

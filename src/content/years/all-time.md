@@ -313,5 +313,26 @@ movies:
       rating: '🔪',
       poster: 'v1695821628/halloween/all-time/dawn-of-the-dead-2004_nqjaqz.jpg',
     },
+    {
+      title: 'The Evil Dead',
+      url: 'https://www.imdb.com/title/tt0083907/',
+      year: 1981,
+      rating: '🔪🔪🔪',
+      poster: 'v1695824565/halloween/all-time/evil-dead-1981_pgfkkc.jpg',
+    },
+    {
+      title: 'Evil Dead II',
+      url: 'https://www.imdb.com/title/tt0092991/',
+      year: 1987,
+      rating: '🔪🔪🔪',
+      poster: 'v1695824566/halloween/all-time/evil-dead-2_vggspw.webp',
+    },
+    {
+      title: 'Bubba Ho-Tep',
+      url: 'https://www.imdb.com/title/tt0281686/',
+      year: 2002,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1695824563/halloween/all-time/bubba-ho-tep_qpy3jk.jpg',
+    },
   ]
 ---
