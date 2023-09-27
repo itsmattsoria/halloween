@@ -23,17 +23,17 @@ const linkAttrs = {
       height="600"
       zoomable={false}
       effects='e_grayscale/e_brightness:15/e_contrast:level_-100,e_tint:100:140C10:E2703A/'
-      containerClasses="poster aspect-square lg:@[400px]:aspect-auto lg:@[400px]:min-h-[50cqw]"
+      containerClasses="poster aspect-square"
       imgClasses="object-cover h-full"
       />
     )}
     <div class="text-container flex flex-col justify-between gap-4">
       <div>
-        <h2 class="text-xl leading-none">
+        <h2 class="text-lg leading-none">
           <span class="sr-only title">{ movie.title }</span>
           <SpookyLink href={ movie.url } text={ movie.title } attributes={ linkAttrs } />
         </h2>
-        <div class="text-sm year">{ movie.year }</div>
+        <div class="text-base year">{ movie.year }</div>
         <div class="text-base rating">{ movie.rating }</div>
       </div>
       { movie.watched && (
@@ -66,13 +66,13 @@ const linkAttrs = {
       }
 
       h2 {
-        flex: 0 0180%;
+        flex: 0 1 80%;
         font-size: theme('fontSize.lg');
       }
 
       .year,
       .rating {
-        flex: 1 0 10%;
+        flex: 1 0 4em;
         text-align: right;
         white-space: nowrap;
       }

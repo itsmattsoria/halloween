@@ -9,6 +9,7 @@ const cld = new Cloudinary({
 const { src, ...props } = Astro.props;
 
 let filename = src.replace(".mov", "");
+filename = filename.replace(".mp4", "");
 let posterImage = cld.image(filename + ".jpg").setAssetType("video");
 
 let cldSrc = cld.video(src);
@@ -23,7 +24,7 @@ interface Props {
 
 <video
   preload="none"
-  class="w-full"
+  class="w-full rounded"
   controls
   poster={posterImage.publicID}
   {...props}
