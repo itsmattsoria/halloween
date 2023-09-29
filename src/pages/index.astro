@@ -1,74 +1,36 @@
 ---
+export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection, getEntry } from 'astro:content';
 import MovieCard from '../components/MovieCard.astro';
 
 let years = await getCollection('years');
-years = years.filter((year) => year.data.title !== 'All Time');
+let topRatedMovies = [];
 
-const allTimeMovies = [
-	{
-		title: 'Halloween',
-		year: 1978,
-		url: 'https://www.imdb.com/title/tt0077651/',
-		poster: 'v1695301098/halloween/all-time/halloween-1978_wyqwb9.jpg',
-		rating: '🔪🔪🔪🔪'
-	}, {
-		title: 'The Shining',
-		year: 1980,
-		url: 'https://www.imdb.com/title/tt0081505/',
-		poster: 'v1695301503/halloween/all-time/The-Shining_yem2ai.avif',
-		rating: '🔪🔪🔪🔪'
-	}, {
-		title: 'Susperia',
-		year: 1977,
-		url: 'https://www.imdb.com/title/tt0076786/',
-		poster: 'v1695301620/halloween/all-time/suspiria-still-1_fc5ly0.jpg',
-		rating: '🔪🔪🔪🔪'
-	}, {
-		title: 'Psycho',
-		year: 1960,
-		url: 'https://www.imdb.com/title/tt0054215/',
-		poster: 'v1695301857/halloween/all-time/psycho_d0sufs.jpg',
-		rating: '🔪🔪🔪🔪'
-	}, {
-		title: 'The Texas Chainsaw Massacre',
-		year: 1974,
-		url: 'https://www.imdb.com/title/tt0072271/',
-		poster: 'v1695301926/halloween/all-time/texaschainsawmassacre_eoaznj.jpg',
-		rating: '🔪🔪🔪🔪'
-	}, {
-		title: 'The Exorcist',
-		year: 1973,
-		url: 'https://www.imdb.com/title/tt0070047/',
-		poster: 'v1695302075/halloween/all-time/theexorcist_vco09w.jpg',
-		rating: '🔪🔪🔪🔪'
-	}, {
-		title: 'Hellraiser',
-		year: 1987,
-		url: 'https://www.imdb.com/title/tt0093177/',
-		poster: 'v1695302512/halloween/all-time/hellraiser_nm5jos.jpg',
-		rating: '🔪🔪🔪🔪'
-	}, {
-		title: 'Silence of the Lambs',
-		year: 1991,
-		url: 'https://www.imdb.com/title/tt0102926/',
-		poster: 'v1695302592/halloween/all-time/silenceofthelambs_ncufrl.jpg',
-		rating: '🔪🔪🔪🔪'
-	}, {
-		title: 'The Amitiville Horror',
-		year: 1979,
-		url: 'https://www.imdb.com/title/tt0078767/',
-		poster: 'v1695302822/halloween/all-time/The_Amityville_Horror_79_uhd_3_cdkkgt.png',
-		rating: '🔪🔪🔪🔪'
-	}, {
-		title: 'Night of the Living Dead',
-		year: 1968,
-		url: 'https://www.imdb.com/title/tt0063350/',
-		poster: 'v1695302896/halloween/all-time/nightofthelivingdead_cootse.jpg',
-		rating: '🔪🔪🔪🔪'
-	}
-]
+years.map((year) => {
+  const yearMovies = year.data.movies.map((movie) => {
+    if (movie.rating === '🔪🔪🔪🔪') {
+      let movieCopy = Object.assign({}, movie);
+      const existingMovieIndex = topRatedMovies.findIndex((m) => m.title === movieCopy.title);
+      if (year.data.title !== 'All Time') {
+        movieCopy.watched = year.data.title;
+      }
+  
+      if (existingMovieIndex === -1) {
+        topRatedMovies.push(movieCopy);
+      } else {
+        const existingMovie = topRatedMovies[existingMovieIndex];
+        if (existingMovie.year !== movieCopy.year) {
+          topRatedMovies.push(movieCopy);
+        }
+      }
+    }
+  });
+});
+
+const shuffledMovies = topRatedMovies.sort(() => 0.5 - Math.random());
+const topTenMovies = shuffledMovies.slice(0, 10);
+years = years.filter((year) => year.data.title !== 'All Time');
 ---
 
 <BaseLayout title="Halloween 🎃">
@@ -87,14 +49,15 @@ const allTimeMovies = [
 				<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2YRiadmpeea27oT4GeXRZx?utm_source=generator&theme=0" width="100%" height="auto" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="min-h-[500px] grow"></iframe>
 			</section>
 			
-			{ allTimeMovies && (
+			{ topRatedMovies && (
 				<section>
 					<div class="flex justify-between items-end gap-2 pb-s">
 						<h3 class="text-4xl font-display uppercase text-highlight leading-none">Movies</h3>
 						<a href="/movie-index" class="text-lg leading-none underline underline-offset-4 hover:text-highlight focus-visible:text-highlight">Movie Index</a>
 					</div>
+
 					<ul class="grid gap-s md:grid-cols-2">
-						{allTimeMovies.map((movie) => <MovieCard movie={movie} />)}
+						{topTenMovies.map((movie) => <MovieCard movie={movie} />)}
 					</ul>
 				</section>
 			)}
