@@ -376,5 +376,65 @@ movies:
       rating: '🔪',
       poster: 'v1695851688/halloween/all-time/amityville-horror-2005_ms1or6.jpg',
     },
+    {
+      title: 'Under The Skin',
+      url: 'https://www.imdb.com/title/tt1441395/',
+      year: 2013,
+      rating: '🔪🔪🔪',
+    },
+    {
+      title: 'The Texas Chainsaw Massacre Part 2',
+      url: 'https://www.imdb.com/title/tt0092076/',
+      year: 1986,
+      rating: '🔪🔪🔪',
+    },
+    {
+      title: 'Insidious: Chapter 2',
+      url: 'https://www.imdb.com/title/tt2226417/',
+      year: 2013,
+      rating: '🔪🔪',
+    },
+    {
+      title: 'The Descent',
+      url: 'https://www.imdb.com/title/tt0435625/',
+      year: 2005,
+      rating: '🔪🔪🔪',
+    },
+    {
+      title: 'Saw',
+      url: 'https://www.imdb.com/title/tt0387564/',
+      year: 2004,
+      rating: '🔪🔪🔪',
+    },
+    {
+      title: 'The Babadook',
+      url: 'https://www.imdb.com/title/tt2321549/',
+      year: 2014,
+      rating: '🔪🔪🔪',
+    },
+    {
+      title: 'Saw II',
+      url: 'https://www.imdb.com/title/tt0432348/',
+      year: 2005,
+      rating: '🔪🔪',
+    },
+    {
+      title: 'Saw III',
+      url: 'https://www.imdb.com/title/tt0489270/',
+      year: 2006,
+      rating: '🔪',
+    },
+    {
+      title: 'Hannibal',
+      url: 'https://www.imdb.com/title/tt0212985/',
+      year: 2001,
+      rating: '🔪🔪',
+    },
+    {
+      title: 'Red Dragon',
+      url: 'https://www.imdb.com/title/tt0289765/',
+      year: 2002,
+      rating: '🔪🔪',
+    },
   ]
 ---
