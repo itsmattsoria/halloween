@@ -49,7 +49,7 @@ const options = [ 'title', 'year', 'rating' ];
             <div class="flex gap-4">
               <div class="text-base">Sort by:</div>
               { options && options.map((option, index) => (
-                index === 0 ? <button class="sort text-base asc" data-sort={option}>{option}</button> : <button class="sort text-base" data-sort={option} data-default-order="desc">{option}</button>
+                index === 0 ? <button class="sort text-base asc underline-offset-4" data-sort={option}>{option}</button> : <button class="sort text-base underline-offset-4 hover:text-highlight hover:underline focus-visible:text-highlight focus-visible:underline" data-sort={option} data-default-order="desc">{option}</button>
               ))}
             </div>
             <button id="view-toggle" data-view="grid" class="text-base underline underline-offset-4 hover:text-highlight focus-visible:text-highlight">List View</button>
