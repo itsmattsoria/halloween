@@ -523,5 +523,33 @@ movies:
       rating: '🔪🔪🔪🔪',
       poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696079473/halloween/all-time/shaun-of-the-dead_stmamc.jpg',
     },
+    {
+      title: 'Inside',
+      url: 'https://www.imdb.com/title/tt0856288/',
+      year: 2007,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696080981/halloween/all-time/inside_q68rrf.jpg',
+    },
+    {
+      title: '10 Cloverfield Lane',
+      url: 'https://www.imdb.com/title/tt1179933/',
+      year: 2016,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696080987/halloween/all-time/10-cloverfield-lane_bv3zkb.webp',
+    },
+    {
+      title: 'Young Frankenstein',
+      url: 'https://www.imdb.com/title/tt0072431/',
+      year: 1974,
+      rating: '🔪🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696080982/halloween/all-time/young-frankenstein_ogs3ij.jpg',
+    },
+    {
+      title: 'One Hour Photo',
+      url: 'https://www.imdb.com/title/tt0265459/',
+      year: 2002,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696080981/halloween/all-time/one-hour-photo_fyulq6.avif',
+    },
   ]
 ---
