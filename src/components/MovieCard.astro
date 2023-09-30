@@ -45,6 +45,7 @@ const linkAttrs = {
 <style>
   .movie-card.list-view {
     border-radius: 0;
+    container-type: inline-size;
     background-color: transparent;
 
     > div {
@@ -60,21 +61,27 @@ const linkAttrs = {
       width: 100%;
 
       > div {
+        gap: 0.5rem;
         display: flex;
-        flex: 1 1 auto;
-        gap: theme('spacing.s');
-      }
+        flex-direction: column;
+        
+        @container (min-width: 700px) {
+          flex: 1 1 auto;
+          flex-direction: row;
+          gap: theme('spacing.xs');
 
-      h2 {
-        flex: 0 1 80%;
-        font-size: theme('fontSize.lg');
-      }
+          h2 {
+            flex: 0 1 80%;
+            font-size: theme('fontSize.lg');
+          }
 
-      .year,
-      .rating {
-        flex: 1 0 4em;
-        text-align: right;
-        white-space: nowrap;
+          .year,
+          .rating {
+            flex: 1 0 4em;
+            text-align: right;
+            white-space: nowrap;
+          }
+        }
       }
     }
   }

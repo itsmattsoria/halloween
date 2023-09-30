@@ -488,5 +488,40 @@ movies:
       rating: '🔪🔪🔪',
       poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696038736/halloween/all-time/phantasm_aafbrn.webp',
     },
+    {
+      title: 'Children of the Corn',
+      url: 'https://www.imdb.com/title/tt0087050/',
+      year: 1984,
+      rating: '🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696079474/halloween/all-time/children-of-the-corn_xtkkcy.jpg',
+    },
+    {
+      title: 'Jeepers Creepers',
+      url: 'https://www.imdb.com/title/tt0263488/',
+      year: 2001,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696079474/halloween/all-time/jeepers-creepers_l6bzst.jpg',
+    },
+    {
+      title: 'Goodnight Mommy',
+      url: 'https://www.imdb.com/title/tt3086442/',
+      year: 2014,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696079473/halloween/all-time/goodnight-mommy_xaysey.jpg',
+    },
+    {
+      title: 'Cabin in the Woods',
+      url: 'https://www.imdb.com/title/tt1259521/',
+      year: 2011,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696079473/halloween/all-time/The-Cabin-in-the-Woods_culxhn.avif',
+    },
+    {
+      title: 'Shaun of the Dead',
+      url: 'https://www.imdb.com/title/tt0365748/',
+      year: 2004,
+      rating: '🔪🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696079473/halloween/all-time/shaun-of-the-dead_stmamc.jpg',
+    },
   ]
 ---
