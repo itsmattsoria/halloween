@@ -453,5 +453,40 @@ movies:
       rating: '🔪🔪🔪',
       poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696023299/halloween/all-time/ringu_w0hf8y.jpg',
     },
+    {
+      title: 'Dead Alive',
+      url: 'https://www.imdb.com/title/tt0103873/',
+      year: 1992,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696038237/halloween/all-time/dead-alive_vovkfh.jpg',
+    },
+    {
+      title: 'The Others',
+      url: 'https://www.imdb.com/title/tt0230600/',
+      year: 2001,
+      rating: '🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696038433/halloween/all-time/the-others_axmvgl.jpg',
+    },
+    {
+      title: 'The Sixth Sense',
+      url: 'https://www.imdb.com/title/tt0167404/',
+      year: 1999,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696038511/halloween/all-time/the-sixth-sense_z06wcv.jpg',
+    },
+    {
+      title: "It's The Great Pumpkin, Charlie Brown",
+      url: 'https://www.imdb.com/title/tt0060550/',
+      year: 1966,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696038636/halloween/all-time/great-pumpkin_slcvks.webp',
+    },
+    {
+      title: 'Phantasm',
+      url: 'https://www.imdb.com/title/tt0079714/',
+      year: 1979,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696038736/halloween/all-time/phantasm_aafbrn.webp',
+    },
   ]
 ---
