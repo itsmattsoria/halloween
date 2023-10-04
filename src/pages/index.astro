@@ -35,20 +35,17 @@ years = years.filter((year) => year.data.title !== 'All Time');
 
 <BaseLayout title="Halloween 🎃">
 	<main class="container pb-3xl">
-		<h1 class="type-full uppercase text-highlight -translate-x-[0.05em]" style="--scaler:15.9cqw;" transition:name="siteTitle">Halloween</h1>
+		<h1 class="type-full uppercase text-highlight -translate-x-[0.05em] leading-none" style="--scaler:15.9cqw;" transition:name="siteTitle">Halloween</h1>
 
-		<ol class="flex flex-wrap gap-6 justify-between ">
-			{years.reverse().map((year) => <li><a href={year.slug} class="text-4xl transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.data.title}>{year.data.title}</a></li>)}
+		<ol class="flex flex-wrap gap-xs justify-between">
+			{years.reverse().map((year) => <li><a href={year.slug} class="text-4xl leading-none transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.data.title}>{year.data.title}</a></li>)}
 		</ol>
 
-		<h2 class="text-4xl text-highlight mt-2xl leading-none mb-xl">All Time Favorites</h2>
+		<p class="text-2xl leading-[1.2] mt-xl">I freaking love Halloween. This is a place for me to keep a little record of what my family and I (mostly I) did, watched, and listened to each Halloween.</p>
 
-		<div class="grid gap-xl lg:grid-cols-2">
-			<section class="flex flex-col">
-				<h3 class="text-4xl font-display uppercase text-highlight">Music</h3>
-				<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2YRiadmpeea27oT4GeXRZx?utm_source=generator&theme=0" width="100%" height="auto" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="min-h-[500px] grow"></iframe>
-			</section>
-			
+		<h2 class="text-3xl text-highlight mt-2xl leading-none mb-xl">All Time Favorites</h2>
+
+		<div class="grid gap-xl">
 			{ topRatedMovies && (
 				<section>
 					<div class="flex justify-between items-end gap-2 pb-s">
@@ -56,11 +53,16 @@ years = years.filter((year) => year.data.title !== 'All Time');
 						<a href="/movie-index" class="text-lg leading-none underline underline-offset-4 hover:text-highlight focus-visible:text-highlight">Movie Index</a>
 					</div>
 
-					<ul class="grid gap-s md:grid-cols-2">
+					<ul class="grid gap-s md:grid-cols-2 xl:grid-cols-5">
 						{topTenMovies.map((movie) => <MovieCard movie={movie} />)}
 					</ul>
 				</section>
 			)}
+
+			<section class="flex flex-col">
+				<h3 class="text-4xl font-display uppercase text-highlight">Music</h3>
+				<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2YRiadmpeea27oT4GeXRZx?utm_source=generator&theme=0" width="100%" height="auto" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="min-h-[500px] grow"></iframe>
+			</section>
 		</div>
 	</main>
 </BaseLayout>

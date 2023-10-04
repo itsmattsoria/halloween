@@ -23,9 +23,9 @@ movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
   <div class="container">
     <header class="mb-3xl">
       <div>
-        <a href="/" class="text-highlight relative z-10">Back</a>
+        <a href="/" class="text-lg text-highlight relative z-10">Back</a>
       </div>
-      <h1 class="type-full inline-flex gap-x-[0.2em] -translate-x-[0.05em]" style="--scaler:12.3cqw;">
+      <h1 class="type-full inline-flex gap-x-[0.2em] -translate-x-[0.05em] leading-none" style="--scaler:12.3cqw;">
         <span class="uppercase text-highlight" transition:name="siteTitle">Halloween</span>
         <span class="font-display text-primary" transition:name={entry.data.title}>{entry.data.title}</span>
       </h1>
