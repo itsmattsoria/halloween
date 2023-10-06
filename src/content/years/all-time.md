@@ -86,7 +86,7 @@ movies:
       title: 'Nosferatu',
       url: 'https://www.imdb.com/title/tt0013442/',
       year: 1922,
-      rating: '🔪🔪🔪',
+      rating: '🔪🔪🔪🔪',
       poster: 'v1695752707/halloween/all-time/nosferatu_mtix9d.jpg',
     },
     {
@@ -289,7 +289,7 @@ movies:
       title: 'Insidious',
       url: 'https://www.imdb.com/title/tt1591095/',
       year: 2010,
-      rating: '🔪🔪',
+      rating: '🔪🔪🔪',
       poster: 'v1695821538/halloween/all-time/insidious_vd3tfy.jpg',
     },
     {
@@ -548,7 +548,7 @@ movies:
       title: 'One Hour Photo',
       url: 'https://www.imdb.com/title/tt0265459/',
       year: 2002,
-      rating: '🔪🔪🔪',
+      rating: '🔪🔪',
       poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696080981/halloween/all-time/one-hour-photo_fyulq6.avif',
     },
     {
@@ -557,6 +557,13 @@ movies:
       year: 2000,
       rating: '🔪🔪🔪',
       poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696468952/halloween/all-time/american-psycho_m61tbc.jpg',
+    },
+    {
+      title: 'Pet Sematary',
+      url: 'https://www.imdb.com/title/tt0098084/',
+      year: 1989,
+      rating: '🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696612355/halloween/all-time/pet-sematary-1989_h4fxlh.jpg',
     },
   ]
 ---
