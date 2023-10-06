@@ -551,5 +551,12 @@ movies:
       rating: '🔪🔪🔪',
       poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696080981/halloween/all-time/one-hour-photo_fyulq6.avif',
     },
+    {
+      title: 'American Psycho',
+      url: 'https://www.imdb.com/title/tt0144084/',
+      year: 2000,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696468952/halloween/all-time/american-psycho_m61tbc.jpg',
+    },
   ]
 ---
