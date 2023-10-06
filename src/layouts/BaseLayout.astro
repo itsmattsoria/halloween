@@ -26,75 +26,8 @@ const bodyClasses = bodyClass + ' py-m';
 	</head>
 	<body class={bodyClasses}>
 		<slot />
-		<!-- <div class="grit"></div> -->
 	</body>
 </html>
-<style is:global>
-	.grit {
-		inset: 0;
-		z-index: 1000;
-    opacity: 0.25;
-    position: fixed;
-    mix-blend-mode: soft-light;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    background-image: var(--noise);
-    background-size: 200px 200px;
-    background-repeat: repeat;
-		pointer-events: none;
-	}
-
-	@media (prefers-reduced-motion: no-preference) {
-		.grit {
-			animation: flip 0.5s steps(1) infinite;
-		}
-	}
-
-	@keyframes flip {
-		0% {
-			transform: scaleX(1) scaleY(1) translateZ(0);
-		}
-
-		25% {
-			transform: scaleX(1) scaleY(-1) translateZ(0);
-		}
-
-		50% {
-			transform: scaleX(-1) scaleY(-1) translateZ(0);
-		}
-
-		75% {
-			transform: scaleX(-1) scaleY(1) translateZ(0);
-		}
-
-		100% {
-			transform: scaleX(-1) scaleY(1) translateZ(0);
-		}
-	}
-</style>
 <script>
 	import "lazysizes";
-  import mediumZoom from "medium-zoom";
-	let zoom;
-	let inited = false;
-  
-	const init = () => {
-		if (inited) {
-			zoom.detach();
-		}
-		// initMediumZoom();
-		inited = true;
-	}
-
-	const initMediumZoom = () => {
-		zoom = mediumZoom('[data-zoomable]', {
-			margin: 24,
-			background: 'var(--colorSecondary)',
-			scrollOffset: 0,
-			template: '#zoom-template',
-		});
-	}
-
-	init();
-	document.addEventListener('astro:after-swap', init);
 </script>
