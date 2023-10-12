@@ -44,7 +44,7 @@ let classes = 'group/link relative inline-block transition-colors duration-250 e
         
           for (let c = 0; c < this.words[w].length; c++) {
             if (this.words[w].charAt(c) === 'a' || this.words[w].charAt(c) === 'e' || this.words[w].charAt(c) === 'i' || this.words[w].charAt(c) === 'o' || this.words[w].charAt(c) === 'u' || this.words[w].charAt(c) === 'A' || this.words[w].charAt(c) === 'E' || this.words[w].charAt(c) === 'I' || this.words[w].charAt(c) === 'O' || this.words[w].charAt(c) === 'U') {
-              this.spookyText += '<span class="relative"><span class="transition-opacity duration-250 ease-out group-hover/link:opacity-0 group-focus-visible/link:opacity-0">' + this.words[w].charAt(c) + '</span><span class="transition-opacity duration-250 ease-out opacity-0 group-hover/link:opacity-100 group-focus-visible/link:opacity-100 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.65]">' + this.spookyChar() + '</span></span>';
+              this.spookyText += '<span class="relative"><span class="transition-opacity duration-250 ease-out group-hover/link:opacity-0 group-focus-visible/link:opacity-0">' + this.words[w].charAt(c) + '</span><span class="pointer-events-none select-none transition-opacity duration-250 ease-out opacity-0 group-hover/link:opacity-100 group-focus-visible/link:opacity-100 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.65]">' + this.spookyChar() + '</span></span>';
             } else {
               this.spookyText += '<span>' + this.words[w].charAt(c) + '</span>';
             }

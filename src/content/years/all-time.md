@@ -352,7 +352,7 @@ movies:
       title: 'The Village of the Damned',
       url: 'https://www.imdb.com/title/tt0054443/',
       year: 1960,
-      rating: '🔪🔪',
+      rating: '🔪🔪🔪',
       poster: 'v1695852087/halloween/all-time/village-of-the-damned_b96iqt.avif',
     },
     {
@@ -564,6 +564,13 @@ movies:
       year: 1989,
       rating: '🔪🔪',
       poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696612355/halloween/all-time/pet-sematary-1989_h4fxlh.jpg',
+    },
+    {
+      title: 'The Stuff',
+      url: 'https://www.imdb.com/title/tt0090094/',
+      year: 1985,
+      rating: '🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696949114/halloween/all-time/the-stuff_slhcbt.jpg',
     },
   ]
 ---
