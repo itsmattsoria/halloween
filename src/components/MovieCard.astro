@@ -15,7 +15,7 @@ const linkAttrs = {
 ---
 
 <li class="movie-card @container rounded bg-highlight text-secondary p-xs" data-card>
-  <div class="grid @[400px]:grid-cols-2 gap-s lg:@[400px]:h-full">
+  <div class="flex flex-col h-full @[400px]:grid @[400px]:grid-cols-2 gap-s lg:@[400px]:h-full">
     { movie.poster && (
       <Image
       url={movie.poster}
@@ -27,7 +27,7 @@ const linkAttrs = {
       imgClasses="object-cover h-full"
       />
     )}
-    <div class="text-container flex flex-col justify-between gap-2">
+    <div class="text-container grow flex flex-col justify-between gap-2">
       <div>
         <h2 class="text-lg leading-none">
           <span class="sr-only title">{ movie.title }</span>
