@@ -572,5 +572,33 @@ movies:
       rating: '🔪',
       poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1696949114/halloween/all-time/the-stuff_slhcbt.jpg',
     },
+    {
+      title: 'The Strangers',
+      url: 'https://www.imdb.com/title/tt0482606/',
+      year: 2008,
+      rating: '🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1697117777/halloween/all-time/the-strangers_gqge6l.avif',
+    },
+    {
+      title: 'Prom Night',
+      url: 'https://www.imdb.com/title/tt0081383/',
+      year: 1980,
+      rating: '🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1697117849/halloween/all-time/prom-night_ryvovv.jpg',
+    },
+    {
+      title: 'The Hills Have Eyes',
+      url: 'https://www.imdb.com/title/tt0077681/',
+      year: 1977,
+      rating: '🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1697118103/halloween/all-time/the-hills-have-eyes_gksqro.jpg',
+    },
+    {
+      title: 'Carrie',
+      url: 'https://www.imdb.com/title/tt0074285/',
+      year: 1976,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1697118496/halloween/all-time/carrie-1976_o4s1hf.jpg',
+    },
   ]
 ---
