@@ -149,7 +149,7 @@ movies:
       title: 'Hellbound: Hellraiser II',
       url: 'https://www.imdb.com/title/tt0095294/',
       year: 1988,
-      rating: '🔪🔪',
+      rating: '🔪🔪🔪',
       poster: 'v1695767550/halloween/all-time/hellbound-hellraiser-2_zye4xh.jpg',
     },
     {
@@ -599,6 +599,20 @@ movies:
       year: 1976,
       rating: '🔪🔪🔪',
       poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1697118496/halloween/all-time/carrie-1976_o4s1hf.jpg',
+    },
+    {
+      title: 'The Wicker Man',
+      url: 'https://www.imdb.com/title/tt0070917/',
+      year: 1973,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1697136829/halloween/all-time/wicker-man_s48tgc.jpg',
+    },
+    {
+      title: 'Donnie Darko',
+      url: 'https://www.imdb.com/title/tt0246578/',
+      year: 2001,
+      rating: '🔪🔪🔪',
+      poster: 'https://res.cloudinary.com/dblidlnrc/image/upload/v1697493246/halloween/all-time/donnie-darko_a5phpv.jpg',
     },
   ]
 ---
