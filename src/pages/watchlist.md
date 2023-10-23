@@ -26,10 +26,5 @@ movies:
       url: 'https://www.imdb.com/title/tt14932528/',
       year: 2022,
     },
-    {
-      title: 'Unfriended',
-      url: 'https://www.imdb.com/title/tt3713166/',
-      year: 2014,
-    },
   ]
 ---

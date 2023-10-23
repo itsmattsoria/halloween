@@ -156,14 +156,14 @@ movies:
       title: "Child's Play",
       url: 'https://www.imdb.com/title/tt0094862/',
       year: 1988,
-      rating: '🔪🔪',
+      rating: '🔪🔪🔪',
       poster: 'v1695767607/halloween/all-time/childs-play_ltn1cq.webp',
     },
     {
       title: "Child's Play 2",
       url: 'https://www.imdb.com/title/tt0099253/',
       year: 1990,
-      rating: '🔪',
+      rating: '🔪🔪',
       poster: 'v1695767653/halloween/all-time/childs-play-2_elmjt4.jpg',
     },
     {
