@@ -57,7 +57,7 @@ movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
     ) }
     { movies && (
       <section class="mb-2xl">
-        <h2 class="font-display uppercase text-highlight text-4xl">Watched</h2>
+        <h2 class="font-display leading-none mb-m uppercase text-highlight text-4xl">Watched <span class="align-top inline-block font-sans text-sm mt-[0.4em]">({movies.length})</span></h2>
         <ul class="grid gap-s lg:gap-m md:grid-cols-2 lg:grid-cols-3">
           { movies.map((movie) => 
             <MovieCard movie={movie} />
