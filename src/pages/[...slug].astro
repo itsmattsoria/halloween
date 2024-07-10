@@ -5,6 +5,7 @@ import { getCollection } from 'astro:content';
 import Image from '../components/CloudImage.astro';
 import Video from '../components/CloudVideo.astro';
 import MovieCard from '../components/MovieCard.astro';
+import { getEntries } from '../components/EntriesFetch.astro';
 
 export async function getStaticPaths() {
   const years = await getCollection('years');
@@ -14,10 +15,58 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
-const images = entry.data.images;
-const movies = entry.data.movies;
-movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
+
+let yearQuery = `{
+  entries(section: "halloweenYears", slug: "${entry.slug}") {
+    title
+    ... on halloweenYear_Entry {
+      id
+      richText
+      halloweenImages {
+        ... on halloween_Asset {
+          alt
+          url
+          title
+          focalPoint
+          width
+          height
+        }
+      }
+    }
+  }
+}`;
+let year = await getEntries(yearQuery);
+year = year[0];
+
+let moviesQuery = `{
+    entries(section: "movies" ,relatedToEntries: { slug: "${entry.slug}" }, orderBy: "title ASC") {
+      id
+      title
+      slug
+      ... on movie_Entry {
+        year
+        rating
+        richText
+        externalLink
+        yearsWatched(status: ["disabled", "live"]) {
+          title
+          status
+          slug
+        }
+        movieImage {
+          ... on halloween_Asset {
+            alt
+            focalPoint
+            url
+            title
+            width
+            height
+          }
+        }
+      }
+    }
+  }`;
+const movies = await getEntries(moviesQuery);
 ---
 <BaseLayout title={'Halloween: ' + entry.data.title} url={entry.data.url}>
   <div class="container">
@@ -30,11 +79,11 @@ movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
         <span class="font-display text-primary" transition:name={entry.data.title}>{entry.data.title}</span>
       </h1>
     </header>
-    { images && (
+    { year.halloweenImages && (
       <section class="mb-2xl">
         <h2 class="font-display uppercase text-highlight text-4xl">Did</h2>
         <ul class="md:columns-2 gap-x-s lg:gap-x-m lg:columns-3">
-          { images.map((image) => 
+          { year.halloweenImages.map((image) => 
             <li class="grid-item w-full mb-s lg:mb-m">
               { image.url.includes('.mov') ? 
                 <Video src={image.url} /> :
@@ -65,8 +114,5 @@ movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
         </ul>  
       </section>
     ) }
-    <div>
-      <Content />
-    </div>
   </div>
 </BaseLayout>

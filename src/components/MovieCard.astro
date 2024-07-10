@@ -18,14 +18,15 @@ const ratingMap = {
   2: '🔪🔪',
   3: '🔪🔪🔪',
   4: '🔪🔪🔪🔪',
+  5: '🔪🔪🔪🔪🔪',
 };
 ---
 
 <li class="movie-card @container rounded bg-highlight text-secondary p-xs" data-card>
   <div class="flex flex-col h-full @[400px]:grid @[400px]:grid-cols-2 gap-s lg:@[400px]:h-full">
-    { movie.halloweenImage && (
+    { movie.movieImage && (
       <Image
-      url={movie.halloweenImage[0].url}
+      url={movie.movieImage[0].url}
       width="600"
       height="600"
       zoomable={false}
@@ -49,7 +50,7 @@ const ratingMap = {
           { movie.yearsWatched.map((year, index) => (
             <span>{ index !== movie.yearsWatched.length && index !== 0 && ', '}</span>
             <span>
-              { year.status === 'live' && <a href={ 'years/' + year.slug } class="underline-offset-2 hover:underline focus-visible:underline">{year.title}</a> }
+              { year.status === 'live' && <a href={year.slug} class="underline-offset-2 hover:underline focus-visible:underline">{year.title}</a> }
               { year.status === 'disabled' && <span>{year.title}</span> }
             </span>
           ))}
