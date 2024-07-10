@@ -43,8 +43,17 @@ const ratingMap = {
         <div class="text-base year">{ movie.year }</div>
         <div class="text-base rating">{ ratingMap[movie.rating] }</div>
       </div>
-      { movie.watched && (
-        <a href={movie.watched} class="text-xs italic tracking-tight underline-offset-2 hover:underline focus-visible:underline">watched in {movie.watched}</a>
+      { movie.yearsWatched.length > 0 && (
+        <div class="text-xs italic tracking-tight">
+          watched in 
+          { movie.yearsWatched.map((year, index) => (
+            <span>{ index !== movie.yearsWatched.length && index !== 0 && ', '}</span>
+            <span>
+              { year.status === 'live' && <a href={ 'years/' + year.slug } class="underline-offset-2 hover:underline focus-visible:underline">{year.title}</a> }
+              { year.status === 'disabled' && <span>{year.title}</span> }
+            </span>
+          ))}
+        </div>
       )}
     </div>
   </div>

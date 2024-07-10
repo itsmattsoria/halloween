@@ -1,33 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection, getEntries, getEntry } from 'astro:content';
 import MovieCard from '../components/MovieCard.astro';
 import { getEntries } from '../components/EntriesFetch.astro';
 
-// const years = await getCollection('years');
-// let movies = [];
-
-// years.map((year) => {
-//   const yearMovies = year.data.movies.map((movie) => {
-//     let movieCopy = Object.assign({}, movie);
-//     const existingMovieIndex = movies.findIndex((m) => m.title === movieCopy.title);
-//     if (year.data.title !== 'All Time') {
-//       movieCopy.watched = year.data.title;
-//     }
-
-//     if (existingMovieIndex === -1) {
-//       movies.push(movieCopy);
-//     } else {
-//       const existingMovie = movies[existingMovieIndex];
-//       if (existingMovie.year !== movieCopy.year) {
-//         movies.push(movieCopy);
-//       }
-//     }
-//   });
-// });
-
 let query = `{
-    entries(section: "movies", site: "halloween") {
+    entries(section: "movies") {
       id
       title
       slug
@@ -36,6 +13,11 @@ let query = `{
         rating
         richText
         externalLink
+        yearsWatched(status: ["disabled", "live"]) {
+          title
+          status
+          slug
+        }
         halloweenImage {
           ... on halloween_Asset {
             id
