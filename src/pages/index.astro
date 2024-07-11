@@ -48,7 +48,7 @@ const topTenMovies = await getEntries(moviesQuery);
 		<h1 class="type-full uppercase text-highlight -translate-x-[0.05em] leading-none" style="--scaler:15.9cqw;" transition:name="siteTitle">Halloween</h1>
 
 		<ol class="flex flex-wrap gap-xs justify-between">
-			{years.reverse().map((year) => <li><a href={year.slug} class="text-4xl leading-none transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.title}>{year.title}</a></li>)}
+			{years.reverse().map((year) => <li><a href={'/year/' + year.slug} class="text-4xl leading-none transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.title}>{year.title}</a></li>)}
 		</ol>
 
 		<p class="text-xl leading-[1.2] mt-xl max-w-prose">I freaking love Halloween. This is a place for me to keep a little record of what my family and I (mostly I) did, watched, and listened to each Halloween.</p>

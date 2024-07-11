@@ -50,7 +50,7 @@ const ratingMap = {
           { movie.yearsWatched.map((year, index) => (
             <span>{ index !== movie.yearsWatched.length && index !== 0 && ', '}</span>
             <span>
-              { year.status === 'live' && <a href={year.slug} class="underline-offset-2 hover:underline focus-visible:underline">{year.title}</a> }
+              { year.status === 'live' && <a href={'/year/' + year.slug} class="underline-offset-2 hover:underline focus-visible:underline">{year.title}</a> }
               { year.status === 'disabled' && <span>{year.title}</span> }
             </span>
           ))}

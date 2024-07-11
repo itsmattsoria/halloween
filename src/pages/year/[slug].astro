@@ -1,23 +1,18 @@
 ---
 import { Debug } from 'astro:components';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import Image from '../components/CloudImage.astro';
-import Video from '../components/CloudVideo.astro';
-import MovieCard from '../components/MovieCard.astro';
-import { getEntries } from '../components/EntriesFetch.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Image from '../../components/CloudImage.astro';
+import Video from '../../components/CloudVideo.astro';
+import MovieCard from '../../components/MovieCard.astro';
+import { getEntry } from '../../components/EntryFetch.astro';
+import { getEntries } from '../../components/EntriesFetch.astro';
 
-export async function getStaticPaths() {
-  const years = await getCollection('years');
-  return years.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
-  }));
-}
+const { slug } = Astro.params;
 
-const { entry } = Astro.props;
-
-let yearQuery = `{
-  entries(section: "halloweenYears", slug: "${entry.slug}") {
+let entryQuery = `{
+  entry(section: "halloweenYears", slug: "${slug}") {
+    id
+    slug
     title
     ... on halloweenYear_Entry {
       id
@@ -35,11 +30,10 @@ let yearQuery = `{
     }
   }
 }`;
-let year = await getEntries(yearQuery);
-year = year[0];
+let entry = await getEntry(entryQuery);
 
 let moviesQuery = `{
-    entries(section: "movies" ,relatedToEntries: { slug: "${entry.slug}" }, orderBy: "title ASC") {
+    entries(section: "movies" ,relatedToEntries: { slug: "${slug}" }, orderBy: "title ASC") {
       id
       title
       slug
@@ -67,8 +61,40 @@ let moviesQuery = `{
     }
   }`;
 const movies = await getEntries(moviesQuery);
+
+export async function getStaticPaths() {
+  let entriesQuery = `{
+    entries(section: "halloweenYears") {
+      id
+      slug
+      title
+      ... on halloweenYear_Entry {
+        id
+        richText
+        halloweenImages {
+          ... on halloween_Asset {
+            alt
+            url
+            title
+            focalPoint
+            width
+            height
+          }
+        }
+      }
+    }
+  }`;
+
+  let entries = await getEntries(entriesQuery);
+  return entries.map((entry) => { 
+    return {
+      params: { slug: entry.slug },
+      props: { entry: entry }
+    }
+  });
+}
 ---
-<BaseLayout title={'Halloween: ' + entry.data.title} url={entry.data.url}>
+<BaseLayout title={'Halloween: ' + entry.title} url={entry.slug}>
   <div class="container">
     <header class="mb-3xl">
       <div>
@@ -76,14 +102,14 @@ const movies = await getEntries(moviesQuery);
       </div>
       <h1 class="type-full inline-flex gap-x-[0.2em] -translate-x-[0.05em] leading-none" style="--scaler:12.3cqw;">
         <span class="uppercase text-highlight" transition:name="siteTitle">Halloween</span>
-        <span class="font-display text-primary" transition:name={entry.data.title}>{entry.data.title}</span>
+        <span class="font-display text-primary" transition:name={entry.title}>{entry.title}</span>
       </h1>
     </header>
-    { year.halloweenImages && (
+    { entry.halloweenImages.length > 0 && (
       <section class="mb-2xl">
         <h2 class="font-display uppercase text-highlight text-4xl">Did</h2>
         <ul class="md:columns-2 gap-x-s lg:gap-x-m lg:columns-3">
-          { year.halloweenImages.map((image) => 
+          { entry.halloweenImages.map((image) => 
             <li class="grid-item w-full mb-s lg:mb-m">
               { image.url.includes('.mov') ? 
                 <Video src={image.url} /> :

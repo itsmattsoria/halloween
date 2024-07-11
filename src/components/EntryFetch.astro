@@ -1,0 +1,18 @@
+---
+export async function getEntry(query: string) {
+  const baseUrl = import.meta.env.BASEURL;
+  const url = new URL('api/', baseUrl);
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer sEX6kaAHP2nbSLvuXiXKQv90aRsFhT2g"
+    },
+    body: JSON.stringify({
+      query: query,
+    }),
+  });
+  let json = await response.json();
+  return json.data.entry;
+}
+---
