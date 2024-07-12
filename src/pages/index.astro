@@ -1,8 +1,26 @@
 ---
 export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getEntries } from '../components/EntriesFetch.astro';
 import MovieCard from '../components/MovieCard.astro';
+
+import { getEntry } from '../components/EntryFetch.astro';
+import { getEntries } from '../components/EntriesFetch.astro';
+
+let homeEntryQuery = `{
+	entry(section: "halloweenHome") {
+		id
+		... on halloweenHome_Entry {
+			richText
+			musicEmbeds {
+				... on musicEmbeds_Entry {
+					id
+					plainText
+				}
+			}
+		}
+	}
+}`;
+const entry = await getEntry(homeEntryQuery);
 
 let yearsQuery = `{
 	entries(section: "halloweenYears") {
@@ -48,10 +66,12 @@ const topTenMovies = await getEntries(moviesQuery);
 		<h1 class="type-full uppercase text-highlight -translate-x-[0.05em] leading-none" style="--scaler:15.9cqw;" transition:name="siteTitle">Halloween</h1>
 
 		<ol class="flex flex-wrap gap-xs justify-between">
-			{years.reverse().map((year) => <li><a href={'/year/' + year.slug} class="text-4xl leading-none transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.title}>{year.title}</a></li>)}
+			{years.map((year) => <li><a href={'/year/' + year.slug} class="text-4xl leading-none transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.title}>{year.title}</a></li>)}
 		</ol>
 
-		<p class="text-xl leading-[1.2] mt-xl max-w-prose">I freaking love Halloween. This is a place for me to keep a little record of what my family and I (mostly I) did, watched, and listened to each Halloween.</p>
+		{ entry.richText && (
+			<div class="text-xl leading-[1.2] mt-xl max-w-prose" set:html={entry.richText}></div>
+		)}
 
 		<h2 class="text-3xl text-highlight mt-2xl leading-none mb-xl">All Time Favorites</h2>
 
@@ -69,10 +89,16 @@ const topTenMovies = await getEntries(moviesQuery);
 				</section>
 			)}
 
-			<section class="flex flex-col">
-				<h3 class="text-4xl font-display uppercase text-highlight">Music</h3>
-				<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2YRiadmpeea27oT4GeXRZx?utm_source=generator&theme=0" width="100%" height="auto" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="min-h-[500px] grow"></iframe>
-			</section>
+			{ entry.musicEmbeds.length > 0 && (
+				<section class="mb-2xl">
+					<h2 class="font-display leading-none mb-m uppercase text-highlight text-4xl">Music</h2>
+					<div class="grid gap-s lg:gap-m md:grid-cols-2 lg:grid-cols-3">
+						{ entry.musicEmbeds.map((embed) => 
+							<div class="w-full mb-s lg:mb-m" set:html={embed.plainText}></div>
+						)}
+					</div>
+				</section>
+			)}
 		</div>
 	</main>
 </BaseLayout>

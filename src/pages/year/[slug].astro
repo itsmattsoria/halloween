@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Image from '../../components/CloudImage.astro';
 import Video from '../../components/CloudVideo.astro';
 import MovieCard from '../../components/MovieCard.astro';
+
 import { getEntry } from '../../components/EntryFetch.astro';
 import { getEntries } from '../../components/EntriesFetch.astro';
 
@@ -25,6 +26,12 @@ let entryQuery = `{
           focalPoint
           width
           height
+        }
+      }
+      musicEmbeds {
+        ... on musicEmbeds_Entry {
+          id
+          plainText
         }
       }
     }
@@ -105,6 +112,11 @@ export async function getStaticPaths() {
         <span class="font-display text-primary" transition:name={entry.title}>{entry.title}</span>
       </h1>
     </header>
+
+    { entry.richText && (
+      <div class="text-xl leading-[1.2] mt-xl max-w-prose mb-2xl" set:html={entry.richText}></div>
+    )}
+
     { entry.halloweenImages.length > 0 && (
       <section class="mb-2xl">
         <h2 class="font-display uppercase text-highlight text-4xl">Did</h2>
@@ -130,6 +142,7 @@ export async function getStaticPaths() {
         </figure>
       </template>
     ) }
+
     { movies && (
       <section class="mb-2xl">
         <h2 class="font-display leading-none mb-m uppercase text-highlight text-4xl">Watched <span class="align-top inline-block font-sans text-sm mt-[0.4em]">({movies.length})</span></h2>
@@ -140,5 +153,16 @@ export async function getStaticPaths() {
         </ul>  
       </section>
     ) }
+
+    { entry.musicEmbeds.length > 0 && (
+      <section class="mb-2xl">
+        <h2 class="font-display leading-none mb-m uppercase text-highlight text-4xl">Listened</h2>
+        <div class="grid gap-s lg:gap-m md:grid-cols-2 lg:grid-cols-3">
+          { entry.musicEmbeds.map((embed) => 
+            <div class="w-full mb-s lg:mb-m" set:html={embed.plainText}></div>
+          )}
+        </div>
+      </section>
+    )}
   </div>
 </BaseLayout>
