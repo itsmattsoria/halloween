@@ -14,8 +14,6 @@ export async function getEntry(query: string) {
     }),
   });
   let json = await response.json();
-  console.log('authToken', authToken);
-  console.log('query', query);
   return json.data.entry;
 }
 ---
