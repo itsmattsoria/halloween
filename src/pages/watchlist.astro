@@ -4,7 +4,7 @@ import MovieCard from '../components/MovieCard.astro';
 import { getEntries } from '../components/EntriesFetch.astro';
 
 let query = `{
-    entries(site: "halloween", section: "movies", watchlist: false) {
+    entries(site: "halloween", section: "movies", watchlist: true) {
       id
       title
       slug
@@ -35,24 +35,24 @@ let query = `{
 const movies = await getEntries(query);
 
 movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
-const options = [ 'title', 'year', 'rating' ];
+const options = [ 'title', 'year' ];
 ---
 
-<BaseLayout title="Matt Soria's Halloween: Movie Index 🎃">
+<BaseLayout title="Matt Soria's Halloween: Watchlist 🎃">
 	<main class="container pb-3xl">
     <header class="mb-3xl">
       <div>
         <a href="/" class="text-lg text-highlight relative z-10">Back</a>
-        <h1 class="type-full inline-flex gap-x-[0.2em] -translate-x-[0.05em] leading-none" style="--scaler:9.8cqw;">
+        <h1 class="type-full inline-flex gap-x-[0.2em] -translate-x-[0.05em] leading-none" style="--scaler:10.7cqw;">
           <span class="uppercase text-highlight" transition:name="siteTitle">Halloween</span>
-          <span class="font-display text-primary" transition:name="Movie Index">Movie Index</span>
+          <span class="font-display text-primary" transition:name="Movie Index">Watchlist</span>
         </h1>
       </div>
     </header>
 
 		{ movies && (
       <section class="mb-2xl">
-        <h2 class="font-display leading-none uppercase text-highlight text-4xl mb-m">All Movies Watched <span class="align-top inline-block font-sans text-sm mt-[0.4em]">({movies.length})</span></h2>
+        <h2 class="font-display leading-none uppercase text-highlight text-4xl mb-m">Movies to Watch <span class="align-top inline-block font-sans text-sm mt-[0.4em]">({movies.length})</span></h2>
         <astro-sort-list id="sort-list" data-value-names={options}>
           <div class="sticky top-0 z-30 bg-secondary flex items-start flex-col sm:flex-row sm:justify-between sm:items-end gap-4 py-2 mb-4">
             <div class="flex gap-4">
