@@ -1,12 +1,13 @@
 ---
 export async function getEntry(query: string) {
   const baseUrl = import.meta.env.BASEURL;
+  const authToken = import.meta.env.SCHEMA_AUTH_TOKEN;
   const url = new URL('api/', baseUrl);
   const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Bearer n407ihtnmdYKBb9WBxiOgeG5mbxejmb8"
+      "Authorization": authToken
     },
     body: JSON.stringify({
       query: query,
