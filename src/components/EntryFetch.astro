@@ -1,7 +1,7 @@
 ---
 export async function getEntry(query: string) {
   const baseUrl = import.meta.env.BASEURL;
-  const url = new URL('api/', baseUrl);
+  const url = new URL('api', baseUrl);
   const response = await fetch(url, {
     method: "POST",
     headers: {
