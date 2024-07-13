@@ -1,0 +1,168 @@
+---
+import { Debug } from 'astro:components';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Image from '../../components/CloudImage.astro';
+import Video from '../../components/CloudVideo.astro';
+import MovieCard from '../../components/MovieCard.astro';
+
+import { getEntry } from '../../components/EntryFetch.astro';
+import { getEntries } from '../../components/EntriesFetch.astro';
+
+const { slug } = Astro.params;
+
+let entryQuery = `{
+  entry(site: "halloween", section: "halloweenYears", slug: "${slug}") {
+    id
+    slug
+    title
+    ... on halloweenYear_Entry {
+      id
+      richText
+      halloweenImages {
+        ... on halloween_Asset {
+          alt
+          url
+          title
+          focalPoint
+          width
+          height
+        }
+      }
+      musicEmbeds {
+        ... on musicEmbeds_Entry {
+          id
+          plainText
+        }
+      }
+    }
+  }
+}`;
+let entry = await getEntry(entryQuery);
+
+let moviesQuery = `{
+    entries(site: "halloween", section: "movies" ,relatedTo: "${entry.id}", orderBy: "title ASC") {
+      id
+      title
+      slug
+      ... on movie_Entry {
+        year
+        rating
+        richText
+        externalLink
+        yearsWatched(status: ["disabled", "live"]) {
+          title
+          status
+          slug
+        }
+        movieImage {
+          ... on halloween_Asset {
+            alt
+            focalPoint
+            url
+            title
+            width
+            height
+          }
+        }
+      }
+    }
+  }`;
+const movies = await getEntries(moviesQuery);
+
+export async function getStaticPaths() {
+  let entriesQuery = `{
+    entries(site: "halloween", section: "halloweenYears") {
+      id
+      slug
+      title
+      ... on halloweenYear_Entry {
+        id
+        richText
+        halloweenImages {
+          ... on halloween_Asset {
+            alt
+            url
+            title
+            focalPoint
+            width
+            height
+          }
+        }
+      }
+    }
+  }`;
+
+  let entries = await getEntries(entriesQuery);
+  return entries.map((entry) => { 
+    return {
+      params: { slug: entry.slug },
+      props: { entry: entry }
+    }
+  });
+}
+---
+<BaseLayout title={'Halloween: ' + entry.title} url={entry.slug}>
+  <div class="container">
+    <header class="mb-3xl">
+      <div>
+        <a href="/" class="text-lg text-highlight relative z-10">Back</a>
+      </div>
+      <h1 class="type-full inline-flex gap-x-[0.2em] -translate-x-[0.05em] leading-none" style="--scaler:12.3cqw;">
+        <span class="uppercase text-highlight" transition:name="siteTitle">Halloween</span>
+        <span class="font-display text-primary" transition:name={entry.title}>{entry.title}</span>
+      </h1>
+    </header>
+
+    { entry.richText && (
+      <div class="text-xl leading-[1.2] mt-xl max-w-prose mb-2xl" set:html={entry.richText}></div>
+    )}
+
+    { entry.halloweenImages.length > 0 && (
+      <section class="mb-2xl">
+        <h2 class="font-display uppercase text-highlight text-4xl">Did</h2>
+        <ul class="md:columns-2 gap-x-s lg:gap-x-m lg:columns-3">
+          { entry.halloweenImages.map((image) => 
+            <li class="grid-item w-full mb-s lg:mb-m">
+              { image.url.includes('.mov') ? 
+                <Video src={image.url} /> :
+                <Image
+                  url={image.url}
+                  width={image.width}
+                  height={image.height}
+                  zoomable={true}
+                />
+              }
+            </li>
+          )}
+        </ul>  
+      </section>
+      <template id="zoom-template">
+        <figure class="fixed inset-0 flex h-screen w-full z-100">
+          <div id="zoom-container" class="w-full mx-auto h-[calc(100%_-_100px)]"></div>
+        </figure>
+      </template>
+    ) }
+
+    { movies && (
+      <section class="mb-2xl">
+        <h2 class="font-display leading-none mb-m uppercase text-highlight text-4xl">Watched <span class="align-top inline-block font-sans text-sm mt-[0.4em]">({movies.length})</span></h2>
+        <ul class="grid gap-s lg:gap-m md:grid-cols-2 lg:grid-cols-3">
+          { movies.map((movie) => 
+            <MovieCard movie={movie} />
+          )}
+        </ul>  
+      </section>
+    ) }
+
+    { entry.musicEmbeds.length > 0 && (
+      <section class="mb-2xl">
+        <h2 class="font-display leading-none mb-m uppercase text-highlight text-4xl">Listened</h2>
+        <div class="grid gap-s lg:gap-m md:grid-cols-2 lg:grid-cols-3">
+          { entry.musicEmbeds.map((embed) => 
+            <div class="w-full mb-s lg:mb-m" set:html={embed.plainText}></div>
+          )}
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>

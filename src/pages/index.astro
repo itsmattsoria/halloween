@@ -1,36 +1,64 @@
 ---
 export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection, getEntry } from 'astro:content';
 import MovieCard from '../components/MovieCard.astro';
 
-let years = await getCollection('years');
-let topRatedMovies = [];
+import { getEntry } from '../components/EntryFetch.astro';
+import { getEntries } from '../components/EntriesFetch.astro';
 
-years.map((year) => {
-  const yearMovies = year.data.movies.map((movie) => {
-    if (movie.rating === '🔪🔪🔪🔪') {
-      let movieCopy = Object.assign({}, movie);
-      const existingMovieIndex = topRatedMovies.findIndex((m) => m.title === movieCopy.title);
-      if (year.data.title !== 'All Time') {
-        movieCopy.watched = year.data.title;
+let homeEntryQuery = `{
+	entry(site: "halloween", section: "halloweenHome") {
+		id
+		... on halloweenHome_Entry {
+			richText
+			musicEmbeds {
+				... on musicEmbeds_Entry {
+					id
+					plainText
+				}
+			}
+		}
+	}
+}`;
+const entry = await getEntry(homeEntryQuery);
+
+let yearsQuery = `{
+	entries(site: "halloween", section: "halloweenYears") {
+		title
+		slug
+	}
+}`;
+const years = await getEntries(yearsQuery);
+
+let moviesQuery = `{
+  entries(site: "halloween", section: "movies", rating: "5", orderBy: "RAND()", limit: 10) {
+    ... on movie_Entry {
+      id
+      rating
+      year
+      title
+      externalLink
+      richText
+      yearsWatched(status: ["disabled", "live"]) {
+        title
+        status
+        slug
       }
-  
-      if (existingMovieIndex === -1) {
-        topRatedMovies.push(movieCopy);
-      } else {
-        const existingMovie = topRatedMovies[existingMovieIndex];
-        if (existingMovie.year !== movieCopy.year) {
-          topRatedMovies.push(movieCopy);
+      movieImage {
+        ... on halloween_Asset {
+          id
+          alt
+          focalPoint
+          url
+          title
+          width
+          height
         }
       }
     }
-  });
-});
-
-const shuffledMovies = topRatedMovies.sort(() => 0.5 - Math.random());
-const topTenMovies = shuffledMovies.slice(0, 10);
-years = years.filter((year) => year.data.title !== 'All Time');
+  }
+}`;
+const topTenMovies = await getEntries(moviesQuery);
 ---
 
 <BaseLayout title="Halloween 🎃">
@@ -38,15 +66,17 @@ years = years.filter((year) => year.data.title !== 'All Time');
 		<h1 class="type-full uppercase text-highlight -translate-x-[0.05em] leading-none" style="--scaler:15.9cqw;" transition:name="siteTitle">Halloween</h1>
 
 		<ol class="flex flex-wrap gap-xs justify-between">
-			{years.reverse().map((year) => <li><a href={year.slug} class="text-4xl leading-none transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.data.title}>{year.data.title}</a></li>)}
+			{years.map((year) => <li><a href={'/year/' + year.slug} class="text-4xl leading-none transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.title}>{year.title}</a></li>)}
 		</ol>
 
-		<p class="text-xl leading-[1.2] mt-xl max-w-prose">I freaking love Halloween. This is a place for me to keep a little record of what my family and I (mostly I) did, watched, and listened to each Halloween.</p>
+		{ entry.richText && (
+			<div class="text-xl leading-[1.2] mt-xl max-w-prose" set:html={entry.richText}></div>
+		)}
 
 		<h2 class="text-3xl text-highlight mt-2xl leading-none mb-xl">All Time Favorites</h2>
 
 		<div class="grid gap-xl">
-			{ topRatedMovies && (
+			{ topTenMovies && (
 				<section>
 					<div class="flex justify-between items-end gap-2 pb-s">
 						<h3 class="text-4xl font-display uppercase text-highlight leading-none">Movies</h3>
@@ -59,10 +89,16 @@ years = years.filter((year) => year.data.title !== 'All Time');
 				</section>
 			)}
 
-			<section class="flex flex-col">
-				<h3 class="text-4xl font-display uppercase text-highlight">Music</h3>
-				<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2YRiadmpeea27oT4GeXRZx?utm_source=generator&theme=0" width="100%" height="auto" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="min-h-[500px] grow"></iframe>
-			</section>
+			{ entry.musicEmbeds.length > 0 && (
+				<section class="mb-2xl">
+					<h2 class="font-display leading-none mb-m uppercase text-highlight text-4xl">Music</h2>
+					<div class="grid gap-s lg:gap-m md:grid-cols-2 lg:grid-cols-3">
+						{ entry.musicEmbeds.map((embed) => 
+							<div class="w-full mb-s lg:mb-m" set:html={embed.plainText}></div>
+						)}
+					</div>
+				</section>
+			)}
 		</div>
 	</main>
 </BaseLayout>
