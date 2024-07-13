@@ -40,7 +40,7 @@ let entryQuery = `{
 let entry = await getEntry(entryQuery);
 
 let moviesQuery = `{
-    entries(site: "halloween", section: "movies" ,relatedToEntries: { slug: "${slug}" }, orderBy: "title ASC") {
+    entries(site: "halloween", section: "movies" ,relatedTo: "${entry.id}", orderBy: "title ASC") {
       id
       title
       slug
