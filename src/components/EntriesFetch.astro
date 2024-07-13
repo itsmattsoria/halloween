@@ -3,19 +3,23 @@ export async function getEntries(query: string) {
   const baseUrl = import.meta.env.BASEURL;
   const authToken = import.meta.env.SCHEMA_AUTH_TOKEN;
   const url = new URL('api/', baseUrl);
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": authToken
-    },
-    body: JSON.stringify({
-      query: query,
-    }),
-  });
-  let json = await response.json();
-  console.log('authToken', authToken);
-  console.log('query', query);
-  return json.data.entries;
+  let json;
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": authToken
+      },
+      body: JSON.stringify({
+        query: query,
+      }),
+    });
+    json = await response.json();
+    return json.data.entries;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw new Error('Failed to fetch data');
+  }
 }
 ---
