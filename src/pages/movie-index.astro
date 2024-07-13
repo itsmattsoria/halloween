@@ -4,7 +4,7 @@ import MovieCard from '../components/MovieCard.astro';
 import { getEntries } from '../components/EntriesFetch.astro';
 
 let query = `{
-    entries(section: "movies") {
+    entries(site: "halloween", section: "movies") {
       id
       title
       slug

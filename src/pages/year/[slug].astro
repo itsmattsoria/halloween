@@ -11,7 +11,7 @@ import { getEntries } from '../../components/EntriesFetch.astro';
 const { slug } = Astro.params;
 
 let entryQuery = `{
-  entry(section: "halloweenYears", slug: "${slug}") {
+  entry(site: "halloween", section: "halloweenYears", slug: "${slug}") {
     id
     slug
     title
@@ -40,7 +40,7 @@ let entryQuery = `{
 let entry = await getEntry(entryQuery);
 
 let moviesQuery = `{
-    entries(section: "movies" ,relatedToEntries: { slug: "${slug}" }, orderBy: "title ASC") {
+    entries(site: "halloween", section: "movies" ,relatedToEntries: { slug: "${slug}" }, orderBy: "title ASC") {
       id
       title
       slug
@@ -71,7 +71,7 @@ const movies = await getEntries(moviesQuery);
 
 export async function getStaticPaths() {
   let entriesQuery = `{
-    entries(section: "halloweenYears") {
+    entries(site: "halloween", section: "halloweenYears") {
       id
       slug
       title

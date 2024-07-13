@@ -7,7 +7,7 @@ import { getEntry } from '../components/EntryFetch.astro';
 import { getEntries } from '../components/EntriesFetch.astro';
 
 let homeEntryQuery = `{
-	entry(section: "halloweenHome") {
+	entry(site: "halloween", section: "halloweenHome") {
 		id
 		... on halloweenHome_Entry {
 			richText
@@ -23,7 +23,7 @@ let homeEntryQuery = `{
 const entry = await getEntry(homeEntryQuery);
 
 let yearsQuery = `{
-	entries(section: "halloweenYears") {
+	entries(site: "halloween", section: "halloweenYears") {
 		title
 		slug
 	}
@@ -31,7 +31,7 @@ let yearsQuery = `{
 const years = await getEntries(yearsQuery);
 
 let moviesQuery = `{
-  entries(section: "movies", rating: "5", orderBy: "RAND()", limit: 10) {
+  entries(site: "halloween", section: "movies", rating: "5", orderBy: "RAND()", limit: 10) {
     ... on movie_Entry {
       id
       rating
