@@ -123,7 +123,7 @@ export async function getStaticPaths() {
         <ul class="md:columns-2 gap-x-s lg:gap-x-m lg:columns-3">
           { entry.halloweenImages.map((image) => 
             <li class="grid-item w-full mb-s lg:mb-m">
-              { image.url.includes('.mov') ? 
+              { image.url.includes('.mov') || image.url.includes('.mp4') ? 
                 <Video src={image.url} /> :
                 <Image
                   url={image.url}
