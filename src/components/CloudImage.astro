@@ -8,7 +8,8 @@ let LQIPholder = "f_jpg,q_50,w_600,e_blur:2000/";
 let xFmPart1 = "f_auto,q_auto:eco,w_";
 let xFmPart2 = ",x_0,z_1/"; // note ending slash
 
-const { url, alt, width, height, zoomable, effects, containerClasses, imgClasses } = Astro.props;
+const { url, alt, width, height, zoomable, caption, lightbox,  effects, containerClasses, imgClasses } = Astro.props;
+
 const effectsString = effects ? effects : "";
 const additionalContainerClasses = containerClasses ? containerClasses : "";
 const additionalImgClasses = imgClasses ? imgClasses : "";
@@ -95,25 +96,51 @@ End, LQIP-to-Base64
   }
 </style>
 
-<div class={divClass} data-pagefind-ignore>
-  <noscript data-pagefind-ignore>
+{ lightbox ?
+  <a href={url} data-fancybox={lightbox} data-caption={caption} data-srcset={Srcset} data-sizes={dataSzes}>
+    <div class={divClass} data-pagefind-ignore>
+      <noscript data-pagefind-ignore>
+        <img
+          class={nscClass}
+          src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
+          alt={alt}
+          width={width}
+          height={height}
+        />
+      </noscript>
+      <img
+        class={imgClass}
+        data-src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
+        data-srcset={Srcset}
+        alt={alt}
+        width={width}
+        height={height}
+        sizes={dataSzes}
+        data-zoomable={zoomable}
+        data-pagefind-ignore
+      />
+    </div>
+  </a> :
+  <div class={divClass} data-pagefind-ignore>
+    <noscript data-pagefind-ignore>
+      <img
+        class={nscClass}
+        src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
+        alt={alt}
+        width={width}
+        height={height}
+      />
+    </noscript>
     <img
-      class={nscClass}
-      src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
+      class={imgClass}
+      data-src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
+      data-srcset={Srcset}
       alt={alt}
       width={width}
       height={height}
+      sizes={dataSzes}
+      data-zoomable={zoomable}
+      data-pagefind-ignore
     />
-  </noscript>
-  <img
-    class={imgClass}
-    data-src={cloudiBase + xFmPart1 + "600" + xFmPart2 + formattedUrl}
-    data-srcset={Srcset}
-    alt={alt}
-    width={width}
-    height={height}
-    sizes={dataSzes}
-    data-zoomable={zoomable}
-    data-pagefind-ignore
-  />
-</div>
+  </div>
+}

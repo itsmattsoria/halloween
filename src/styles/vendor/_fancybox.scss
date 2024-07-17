@@ -1,0 +1,24 @@
+.fancybox__backdrop {
+  background-color: var(--colorSecondary) !important;
+}
+.fancybox__slide {
+  padding: 80px 80px !important;
+}
+.fancybox__content {
+  anchor-name: --fb-content;
+
+  img,
+  video {
+    border-radius: theme('borderRadius.DEFAULT');
+  }
+}
+.fancybox__caption {
+  position-anchor: --fb-content;
+  position: absolute;
+  inset-inline-start: anchor(left);
+  inset-block-start: anchor(bottom);
+  color: var(--colorPrimary) !important;
+}
+.f-button {
+  color: var(--colorPrimary) !important;
+}
