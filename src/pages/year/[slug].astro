@@ -126,7 +126,7 @@ export async function getStaticPaths() {
           { entry.halloweenImages.map((image) => 
             <li class="grid-item w-full mb-s lg:mb-m">
               { image.url.includes('.mov') || image.url.includes('.mp4') ? 
-                <Video src={image.url} caption={image} lightbox="halloween-images" /> :
+                <Video src={image.url} caption={image.captionSimple} lightbox="halloween-images" /> :
                 <Image
                   url={image.url}
                   alt={image.alt}
