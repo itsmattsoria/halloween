@@ -122,9 +122,11 @@ export async function getStaticPaths() {
     { entry.halloweenImages.length > 0 && (
       <section class="mb-2xl">
         <h2 class="font-display uppercase text-highlight text-4xl">Did</h2>
-        <ul class="md:columns-2 gap-x-s lg:gap-x-m lg:columns-3">
+        <ul class="masonry gap-x-s lg:gap-x-m">
+          <div class="gutter-sizer"></div>
+          <div class="grid-sizer"></div>
           { entry.halloweenImages.map((image) => 
-            <li class="grid-item w-full mb-s lg:mb-m">
+            <li class="grid-item mb-s lg:mb-m">
               { image.url.includes('.mov') || image.url.includes('.mp4') ? 
                 <Video src={image.url} caption={image.captionSimple} lightbox="halloween-images" /> :
                 <Image
@@ -174,8 +176,11 @@ export async function getStaticPaths() {
 </BaseLayout>
 
 <script>
-  import { Fancybox } from '@fancyapps/ui';
+  import { horizontal } from '@cloudinary/url-gen/qualifiers/gradientDirection';
+import { Fancybox } from '@fancyapps/ui';
   import '@fancyapps/ui/dist/fancybox/fancybox.css';
+  import Masonry from 'masonry-layout';
+  import imagesloaded from 'imagesloaded';
 
   document.addEventListener('astro:page-load', () => {
     Fancybox.bind('[data-fancybox]', {
@@ -193,5 +198,20 @@ export async function getStaticPaths() {
         },
       },
     });
+
+    const masonryGrid = document.querySelector('.masonry');
+
+    let msnry = new Masonry(masonryGrid, {
+      itemSelector: '.grid-item',
+      columnWidth: '.grid-sizer',
+      gutter: '.gutter-sizer',
+      percentPosition: true,
+      horizontalOrder: true,
+      transitionDuration: '0',
+    });
+    msnry.once('layoutComplete', () => {
+      masonryGrid.classList.add('-loaded');
+    });
+    msnry.layout();
   });
 </script>

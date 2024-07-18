@@ -66,3 +66,38 @@ img {
 img.lazyload:not([src]) {
   visibility: hidden;
 }
+
+.masonry {
+  opacity: 0;
+  transition: opacity 0.5s;
+  &.-loaded {
+    opacity: 1;
+  }
+
+  .grid-sizer,
+  .grid-item {
+    width: 100%;
+  }
+
+  @screen md {
+    .grid-sizer,
+    .grid-item {
+      width: calc(50% - (var(--space-s) / 2));
+    }
+    .gutter-sizer {
+      width: var(--space-s);
+    }
+  }
+
+  @screen lg {
+    width: calc(100% + var(--space-m));
+
+    .grid-sizer,
+    .grid-item {
+      width: calc(33.3333% - (var(--space-m)));
+    }
+    .gutter-sizer {
+      width: var(--space-m);
+    }
+  }
+}
