@@ -173,23 +173,25 @@ export async function getStaticPaths() {
   </div>
 </BaseLayout>
 
-<script is:inline data-astro-rerun type="module">
-  import { Fancybox } from "/node_modules/@fancyapps/ui";
-  import "/node_modules/@fancyapps/ui/dist/fancybox/fancybox.css";
+<script>
+  import { Fancybox } from '@fancyapps/ui';
+  import '@fancyapps/ui/dist/fancybox/fancybox.css';
 
-  Fancybox.bind("[data-fancybox]", {
-    closeExisting: true,
-    Thumbs: false,
-    Hash: false,
-    Images: {
-      zoom: false
-    },
-    Toolbar: {
-      display: {
-        left: [],
-        middle: [],
-        right: ["close"],
+  document.addEventListener('astro:page-load', () => {
+    Fancybox.bind('[data-fancybox]', {
+      closeExisting: true,
+      Thumbs: false,
+      Hash: false,
+      Images: {
+        zoom: false,
       },
-    },
+      Toolbar: {
+        display: {
+          left: [],
+          middle: [],
+          right: ['close'],
+        },
+      },
+    });
   });
 </script>
