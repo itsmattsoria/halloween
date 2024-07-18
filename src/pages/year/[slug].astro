@@ -26,6 +26,7 @@ let entryQuery = `{
           focalPoint
           width
           height
+          captionSimple
         }
       }
       musicEmbeds {
@@ -86,6 +87,7 @@ export async function getStaticPaths() {
             focalPoint
             width
             height
+            captionSimple
           }
         }
       }
@@ -124,12 +126,15 @@ export async function getStaticPaths() {
           { entry.halloweenImages.map((image) => 
             <li class="grid-item w-full mb-s lg:mb-m">
               { image.url.includes('.mov') || image.url.includes('.mp4') ? 
-                <Video src={image.url} /> :
+                <Video src={image.url} caption={image.captionSimple} lightbox="halloween-images" /> :
                 <Image
                   url={image.url}
+                  alt={image.alt}
                   width={image.width}
                   height={image.height}
                   zoomable={true}
+                  caption={image.captionSimple}
+                  lightbox="halloween-images"
                 />
               }
             </li>
@@ -138,7 +143,8 @@ export async function getStaticPaths() {
       </section>
       <template id="zoom-template">
         <figure class="fixed inset-0 flex h-screen w-full z-100">
-          <div id="zoom-container" class="w-full mx-auto h-[calc(100%_-_100px)]"></div>
+          <div id="zoom-container" class="w-[calc(100%_-_100px)] my-auto mx-auto h-[calc(100%_-_100px)]">
+          </div>
         </figure>
       </template>
     ) }
@@ -166,3 +172,26 @@ export async function getStaticPaths() {
     )}
   </div>
 </BaseLayout>
+
+<script>
+  import { Fancybox } from '@fancyapps/ui';
+  import '@fancyapps/ui/dist/fancybox/fancybox.css';
+
+  document.addEventListener('astro:page-load', () => {
+    Fancybox.bind('[data-fancybox]', {
+      closeExisting: true,
+      Thumbs: false,
+      Hash: false,
+      Images: {
+        zoom: false,
+      },
+      Toolbar: {
+        display: {
+          left: [],
+          middle: [],
+          right: ['close'],
+        },
+      },
+    });
+  });
+</script>

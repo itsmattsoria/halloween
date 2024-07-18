@@ -6,7 +6,7 @@ const cld = new Cloudinary({
     cloudName: import.meta.env.CLOUDNAME,
   },
 });
-const { src, ...props } = Astro.props;
+const { src, caption, lightbox, ...props } = Astro.props;
 
 let filename = src.replace(".mov", "");
 filename = filename.replace(".mp4", "");
@@ -21,13 +21,25 @@ interface Props {
   height: string;
 }
 ---
-
-<video
-  preload="none"
-  class="w-full rounded"
-  controls
-  poster={posterImage.publicID}
-  {...props}
->
-  <source src={cldSrc.toURL()} type="video/mp4" />
-</video>
+{ lightbox ?
+  <a href={src} data-fancybox={lightbox} data-caption={caption}>
+    <video
+      preload="none"
+      class="w-full rounded"
+      controls
+      poster={posterImage.publicID}
+      {...props}
+    >
+      <source src={cldSrc.toURL()} type="video/mp4" />
+    </video>
+  </a> :
+  <video
+    preload="none"
+    class="w-full rounded"
+    controls
+    poster={posterImage.publicID}
+    {...props}
+  >
+    <source src={cldSrc.toURL()} type="video/mp4" />
+  </video>
+}
