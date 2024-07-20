@@ -31,7 +31,7 @@ let yearsQuery = `{
 const years = await getEntries(yearsQuery);
 
 let moviesQuery = `{
-  entries(site: "halloween", section: "movies", rating: "5", orderBy: "RAND()", limit: 10) {
+  entries(site: "halloween", section: "movies", rating: "5", orderBy: "RAND()") {
     ... on movie_Entry {
       id
       rating
@@ -59,6 +59,16 @@ let moviesQuery = `{
   }
 }`;
 const topTenMovies = await getEntries(moviesQuery);
+
+function shuffle(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[array[i], array[j]] = [array[j], array[i]]; // ES6 destructuring assignment for swapping
+	}
+	return array;
+}
+
+const randomTopTen = shuffle(topTenMovies).slice(0, 10);
 ---
 
 <BaseLayout title="Matt Soria's Halloween 🎃">
@@ -76,7 +86,7 @@ const topTenMovies = await getEntries(moviesQuery);
 		<h2 class="text-3xl text-highlight mt-2xl leading-none mb-xl">All Time Favorites</h2>
 
 		<div class="grid gap-xl">
-			{ topTenMovies && (
+			{ randomTopTen && (
 				<section>
 					<div class="grid md:flex md:justify-between md:items-end gap-4 pb-s">
 						<h3 class="text-4xl font-display uppercase text-highlight leading-none">Movies</h3>
@@ -87,7 +97,7 @@ const topTenMovies = await getEntries(moviesQuery);
 					</div>
 
 					<ul class="grid gap-s md:grid-cols-2 xl:grid-cols-5">
-						{topTenMovies.map((movie) => <MovieCard movie={movie} />)}
+						{randomTopTen.map((movie) => <MovieCard movie={movie} />)}
 					</ul>
 				</section>
 			)}
