@@ -13,5 +13,8 @@ export default defineConfig({
     mdx(),
   ],
   output: 'hybrid',
-  adapter: netlify(),
+  adapter: netlify({
+    imageCDN: false,
+    cacheOnDemandPages: true,
+  }),
 });
