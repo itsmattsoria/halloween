@@ -20,6 +20,11 @@ body {
   border-radius: theme('borderRadius.DEFAULT');
 }
 
+::selection {
+  background-color: theme('colors.highlight');
+  color: theme('colors.primary');
+}
+
 .container {
   container: container / inline-size;
   margin-inline: auto;

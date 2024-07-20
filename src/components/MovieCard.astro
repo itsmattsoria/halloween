@@ -26,13 +26,14 @@ const ratingMap = {
   <div class="flex flex-col h-full @[400px]:grid @[400px]:grid-cols-2 gap-s lg:@[400px]:h-full">
     { movie.movieImage && (
       <Image
-      url={movie.movieImage[0].url}
-      width="600"
-      height="600"
-      zoomable={false}
-      effects='e_grayscale/e_brightness:15/e_contrast:level_-30/e_tint:100:140C10:E2703A/'
-      containerClasses="poster aspect-square"
-      imgClasses="object-cover h-full"
+        url={movie.movieImage[0].url}
+        width="600"
+        height="600"
+        zoomable={false}
+        effects='e_grayscale/e_brightness:15/e_contrast:level_-30/e_tint:100:140C10:E2703A/'
+        containerClasses="poster aspect-square"
+        imgClasses="object-cover h-full"
+        focalPoint={movie.movieImage[0].focalPoint}
       />
     )}
     <div class="text-container grow flex flex-col justify-between gap-2">

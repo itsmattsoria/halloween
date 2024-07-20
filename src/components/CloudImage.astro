@@ -8,12 +8,16 @@ let LQIPholder = "f_jpg,q_50,w_600,e_blur:2000/";
 let xFmPart1 = "f_auto,q_auto:eco,w_";
 let xFmPart2 = ",x_0,z_1/"; // note ending slash
 
-const { url, alt, width, height, zoomable, caption, lightbox,  effects, containerClasses, imgClasses } = Astro.props;
+const { url, alt, width, height, zoomable, caption, lightbox, focalPoint,  effects, containerClasses, imgClasses } = Astro.props;
 
 const effectsString = effects ? effects : "";
 const additionalContainerClasses = containerClasses ? containerClasses : "";
 const additionalImgClasses = imgClasses ? imgClasses : "";
 const formattedUrl = url.replace(cloudiBase, '');
+let objectPosition = "center";
+if (focalPoint) {
+ objectPosition = `${focalPoint[0] * 100}% ${focalPoint[1] * 100}%`;
+}
 
 if (effectsString) {
   LQIPholder = LQIPholder + effectsString + "/";
@@ -60,21 +64,15 @@ End, LQIP-to-Base64
 */
 ---
 
-<style lang="scss" define:vars={{ imgBkgd }}>
+<style lang="scss" define:vars={{ imgBkgd, objectPosition }}>
   .bkgdHandler {
     background-color: #ffffff;
     background-image: var(--imgBkgd);
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: var(--objectPosition);
     background-size: cover;
   }
-  img.containedImage {
-    display: block;
-    width: 100%;
-    height: auto;
-    padding: 0;
-    margin: 0 auto;
-  }
+
   @keyframes fadeIn {
     0% {
       opacity: 0;
@@ -118,6 +116,7 @@ End, LQIP-to-Base64
         sizes={dataSzes}
         data-zoomable={zoomable}
         data-pagefind-ignore
+        style={'object-position: ${objectPosition};'}
       />
     </div>
   </a> :
@@ -141,6 +140,7 @@ End, LQIP-to-Base64
       sizes={dataSzes}
       data-zoomable={zoomable}
       data-pagefind-ignore
+      style={'object-position: ' + objectPosition}
     />
   </div>
 }
