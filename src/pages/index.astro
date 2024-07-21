@@ -73,7 +73,10 @@ const randomTopTen = shuffle(topTenMovies).slice(0, 10);
 
 <BaseLayout title="Matt Soria's Halloween 🎃">
 	<main class="container pb-3xl">
-		<h1 class="type-full uppercase text-highlight -translate-x-[0.05em] leading-none" style="--scaler:15.9cqw;" transition:name="siteTitle">Halloween</h1>
+		<h1 class="uppercase text-highlight -translate-x-[0.05em] leading-none" transition:name="siteTitle">
+			<span class="type-full block text-center leading-[0.5]" style="--scaler:5cqw">Matt Soria's</span>
+			<span class="type-full" style="--scaler:15.7cqw;">Halloween</span>
+		</h1>
 
 		<ol class="flex flex-wrap gap-xs justify-between">
 			{years.map((year) => <li><a href={'/year/' + year.slug} class="text-4xl leading-none transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.title}>{year.title}</a></li>)}
