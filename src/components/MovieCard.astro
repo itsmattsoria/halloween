@@ -36,27 +36,23 @@ const ratingMap = {
         focalPoint={movie.movieImage[0].focalPoint}
       />
     )}
-    <div class="text-container grow flex flex-col justify-between gap-2">
+    <div class="text-container grow flex flex-col justify-between gap-6">
       <div class="text-content grow">
         <h2 class="text-lg leading-none">
           <span class="sr-only title">{ movie.title }</span>
           <SpookyLink href={ movie.externalLink } text={ movie.title } attributes={ linkAttrs } />
         </h2>
         <div class="text-base year">{ movie.year }</div>
-        <div class="text-base rating">{ ratingMap[movie.rating] }</div>
       </div>
+      <div>
+        <div class="text-base rating mb-[1rem]">{ ratingMap[movie.rating] }</div>
       { movie.yearsWatched.length > 0 && (
-        <div class="watched-in text-xs italic tracking-tight">
+        <div class="absolute bottom-xs w-full watched-in text-xs italic tracking-tight leading-none opacity-75">
           <span>watched in </span>
-          { movie.yearsWatched.map((year, index) => (
-            <span>
-              { index !== movie.yearsWatched.length && index !== 0 && <span>, </span> }
-              { year.status === 'live' && <a href={'/year/' + year.slug } class="underline-offset-2 hover:underline focus-visible:underline">{year.title}</a> }
-              { year.status === 'disabled' && <span>{year.title}</span> }
-            </span>
-          ))}
+          { movie.yearsWatched.map((year, index) => (<span>{ index !== movie.yearsWatched.length && index !== 0 && <span>, </span> }{ year.status === 'live' && <a href={'/year/' + year.slug } class="underline-offset-2 underline hover:no-underline focus-visible:no-underline">{year.title}</a> }{ year.status === 'disabled' && <span>{year.title}</span>}</span>))}
         </div>
       )}
+      </div>
     </div>
   </div>
 </li>
@@ -77,6 +73,7 @@ const ratingMap = {
     }
 
     .text-container {
+      gap: 0;
       width: 100%;
 
       > div:not(.watched-in) {
@@ -99,6 +96,10 @@ const ratingMap = {
             flex: 1 0 5em;
             text-align: right;
             white-space: nowrap;
+          }
+
+          .rating {
+            margin-bottom: 0;
           }
         }
       }
