@@ -201,6 +201,8 @@ import { Fancybox } from '@fancyapps/ui';
 
     const masonryGrid = document.querySelector('.masonry');
 
+    if (!masonryGrid) return;
+    
     let msnry = new Masonry(masonryGrid, {
       itemSelector: '.grid-item',
       columnWidth: '.grid-sizer',

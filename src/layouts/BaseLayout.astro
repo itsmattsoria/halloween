@@ -77,6 +77,11 @@ const bodyClasses = bodyClass + ' py-m';
 </html>
 <script>
 	import "lazysizes";
+	import Noise from "/src/scripts/Noise.js";
+
+	document.addEventListener('astro:page-load', () => {
+		const noise = new Noise();
+	});
 </script>
 <style>
 	.shaker:hover .shake ,
