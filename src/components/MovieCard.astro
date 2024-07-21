@@ -37,7 +37,7 @@ const ratingMap = {
       />
     )}
     <div class="text-container grow flex flex-col justify-between gap-2">
-      <div>
+      <div class="text-content grow">
         <h2 class="text-lg leading-none">
           <span class="sr-only title">{ movie.title }</span>
           <SpookyLink href={ movie.externalLink } text={ movie.title } attributes={ linkAttrs } />
@@ -46,12 +46,12 @@ const ratingMap = {
         <div class="text-base rating">{ ratingMap[movie.rating] }</div>
       </div>
       { movie.yearsWatched.length > 0 && (
-        <div class="text-xs italic tracking-tight">
-          watched in 
+        <div class="watched-in text-xs italic tracking-tight">
+          <span>watched in </span>
           { movie.yearsWatched.map((year, index) => (
-            <span>{ index !== movie.yearsWatched.length && index !== 0 && ', '}</span>
             <span>
-              { year.status === 'live' && <a href={'/year/' + year.slug} class="underline-offset-2 hover:underline focus-visible:underline">{year.title}</a> }
+              { index !== movie.yearsWatched.length && index !== 0 && <span>, </span> }
+              { year.status === 'live' && <a href={'/year/' + year.slug } class="underline-offset-2 hover:underline focus-visible:underline">{year.title}</a> }
               { year.status === 'disabled' && <span>{year.title}</span> }
             </span>
           ))}
@@ -79,7 +79,7 @@ const ratingMap = {
     .text-container {
       width: 100%;
 
-      > div {
+      > div:not(.watched-in) {
         gap: 0.5rem;
         display: flex;
         flex-direction: column;
@@ -96,7 +96,7 @@ const ratingMap = {
 
           .year,
           .rating {
-            flex: 1 0 4em;
+            flex: 1 0 5em;
             text-align: right;
             white-space: nowrap;
           }
