@@ -65,6 +65,9 @@ module.exports = {
       borderRadius: {
         DEFAULT: '0.35rem',
       },
+      maxWidth: {
+        prose: '50ch',
+      },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
