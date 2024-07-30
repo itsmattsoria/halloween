@@ -215,6 +215,10 @@ export async function getStaticPaths() {
       masonryGrid.classList.add('-loaded');
     });
     msnry.layout();
+
+    imagesloaded(masonryGrid).on('progress', () => {
+      msnry.layout();
+    });
   });
 </script>
 
