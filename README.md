@@ -1,6 +1,6 @@
 # Matt Soria's Halloween
 
-This is a minisite for tracking what I do and watch each Halloween, cause I friggin love Halloween. It's a static site built with [Astro](https://astro.build), deployed on [Vercel](https://vercel.com), with content managed on Craft CMS via my [Mothership Connection](https://github.com/itsmattsoria/mothership-connection) project.
+This is a minisite for tracking what I do and watch each Halloween, cause I friggin love Halloween. It's a static site built with [Astro](https://astro.build), deployed on [Netlify](https://netlify.com), with content managed on Craft CMS via my [Mothership Connection](https://github.com/itsmattsoria/mothership-connection) project.
 
 ## 🧞 Commands
 
@@ -19,6 +19,6 @@ All commands are run from the root of the project, from a terminal:
 
 - [Astro Documentation](https://docs.astro.build)
 - [Astro Discord server](https://astro.build/chat)
-- [Vercel Documentation](https://vercel.com/docs)
+- [Netlify Documentation](https://docs.netlify.com/)
 - [Craft CMS GraphQL API](https://craftcms.com/docs/5.x/development/graphql.html)
 - [Craft CMS Discord server](https://craftcms.com/discord)
