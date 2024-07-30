@@ -42,10 +42,10 @@ const options = [ 'title', 'year', 'rating' ];
 	<main class="container pb-3xl">
     <header class="mb-3xl">
       <div>
-        <a href="/" class="text-lg text-highlight relative z-10">Back</a>
-        <h1 class="type-full inline-flex gap-x-[0.2em] -translate-x-[0.05em] leading-none" style="--scaler:9.8cqw;">
-          <span class="uppercase text-highlight" transition:name="siteTitle">Halloween</span>
-          <span class="font-display text-primary" transition:name="Movie Index">Movie Index</span>
+        <a href="/" class="text-lg text-highlight relative z-10 block w-max">Back</a>
+        <h1 class="type-full inline-flex flex-col sm:flex-row gap-x-[0.2em] -translate-x-[0.05em] leading-none">
+          <span class="uppercase text-highlight block sm:inline-block" transition:name="siteTitle">Halloween</span>
+          <span class="font-display text-primary block sm:inline-block" transition:name="Movie Index">Movie Index</span>
         </h1>
       </div>
     </header>
@@ -121,6 +121,13 @@ const options = [ 'title', 'year', 'rating' ];
   customElements.define('astro-sort-list', AstroSortList);
 </script>
 <style>
+  h1 {
+    --scaler:15.7cqw;
+    @screen sm {
+      --scaler:9.8cqw;
+    }
+  }
+
   .sort {
     &.asc, &.desc {
       color: theme('colors.highlight');

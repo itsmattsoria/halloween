@@ -107,11 +107,11 @@ export async function getStaticPaths() {
   <div class="container">
     <header class="mb-3xl">
       <div>
-        <a href="/" class="text-lg text-highlight relative z-10">Back</a>
+        <a href="/" class="text-lg text-highlight relative z-10 block w-max">Back</a>
       </div>
-      <h1 class="type-full inline-flex gap-x-[0.2em] -translate-x-[0.05em] leading-none" style="--scaler:12.3cqw;">
-        <span class="uppercase text-highlight" transition:name="siteTitle">Halloween</span>
-        <span class="font-display text-primary" transition:name={entry.title}>{entry.title}</span>
+      <h1 class="type-full inline-flex flex-col sm:flex-row gap-x-[0.2em] -translate-x-[0.05em] leading-none">
+        <span class="uppercase text-highlight block sm:inline-block" transition:name="siteTitle">Halloween</span>
+        <span class="font-display text-primary block sm:inline-block" transition:name={entry.title}>{entry.title}</span>
       </h1>
     </header>
 
@@ -177,7 +177,7 @@ export async function getStaticPaths() {
 
 <script>
   import { horizontal } from '@cloudinary/url-gen/qualifiers/gradientDirection';
-import { Fancybox } from '@fancyapps/ui';
+  import { Fancybox } from '@fancyapps/ui';
   import '@fancyapps/ui/dist/fancybox/fancybox.css';
   import Masonry from 'masonry-layout';
   import imagesloaded from 'imagesloaded';
@@ -217,3 +217,12 @@ import { Fancybox } from '@fancyapps/ui';
     msnry.layout();
   });
 </script>
+
+<style>
+  h1 {
+    --scaler:15.7cqw;
+    @screen sm {
+      --scaler:12.3cqw;
+    }
+  }
+</style>
