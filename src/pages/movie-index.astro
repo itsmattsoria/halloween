@@ -137,12 +137,9 @@ const options = [ 'title', 'year', 'rating' ];
   }
 
   .list-view {
+    gap: 0;
     grid-template-columns: 1fr;
     border-radius: theme('borderRadius.DEFAULT');
     background-color: theme('colors.highlight');
-
-    @screen lg {
-      gap: 0;
-    }
   }
 </style>

@@ -38,13 +38,13 @@ const ratingMap = {
     )}
     <div class="text-container grow flex flex-col justify-between gap-6">
       <div class="text-content grow">
-        <h2 class="text-lg leading-none">
+        <h2 class="text-lg leading-[1.1]">
           <span class="sr-only title">{ movie.title }</span>
           <SpookyLink href={ movie.externalLink } text={ movie.title } attributes={ linkAttrs } />
         </h2>
-        <div class="text-base year">{ movie.year }</div>
+        <div class="text-sm year">{ movie.year }</div>
       </div>
-      <div>
+      <div class="text-meta">
         <div class="text-base rating mb-[1rem]">{ ratingMap[movie.rating] }</div>
       { movie.yearsWatched.length > 0 && (
         <div class="absolute bottom-xs w-full watched-in text-xs italic tracking-tight leading-none opacity-75">
@@ -73,18 +73,35 @@ const ratingMap = {
     }
 
     .text-container {
-      gap: 0;
+      gap: theme('spacing.2xs');
       width: 100%;
 
       > div:not(.watched-in) {
-        gap: 0.5rem;
         display: flex;
         flex-direction: column;
+        gap: theme('spacing.2xs');
+
+        &.text-meta {
+          display: grid;
+          gap: theme('spacing.2xs');
+        }
+
+        .rating {
+          margin-bottom: 0;
+        }
         
         @container (min-width: 700px) {
           flex: 1 1 auto;
           flex-direction: row;
           gap: theme('spacing.xs');
+
+          &.text-content {
+            align-items: baseline;
+          }
+
+          &.text-meta {
+            align-items: end;
+          }
 
           h2 {
             flex: 0 1 80%;
@@ -97,10 +114,13 @@ const ratingMap = {
             text-align: right;
             white-space: nowrap;
           }
+        }
+      }
 
-          .rating {
-            margin-bottom: 0;
-          }
+      .watched-in {
+
+        @container (max-width: 699px) {
+          position: static;
         }
       }
     }
