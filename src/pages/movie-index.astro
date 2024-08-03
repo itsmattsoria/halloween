@@ -3,38 +3,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import MovieCard from '../components/MovieCard.astro';
 import { getEntries } from '../components/EntriesFetch.astro';
 
-let query = `{
-    entries(site: "halloween", section: "movies", watchlist: false) {
-      id
-      title
-      slug
-      ... on movie_Entry {
-        year
-        rating
-        richText
-        externalLink
-        yearsWatched(status: ["disabled", "live"]) {
-          title
-          status
-          slug
-        }
-        movieImage {
-          ... on halloween_Asset {
-            id
-            alt
-            focalPoint
-            url
-            title
-            width
-            height
-          }
-        }
-      }
-    }
-  }`;
-const movies = await getEntries(query);
+// let query = `{
+//     entries(site: "halloween", section: "movies", watchlist: false) {
+//       id
+//       title
+//       slug
+//       ... on movie_Entry {
+//         year
+//         rating
+//         richText
+//         externalLink
+//         yearsWatched(status: ["disabled", "live"]) {
+//           title
+//           status
+//           slug
+//         }
+//         movieImage {
+//           ... on halloween_Asset {
+//             id
+//             alt
+//             focalPoint
+//             url
+//             title
+//             width
+//             height
+//           }
+//         }
+//       }
+//     }
+//   }`;
+// const movies = await getEntries(query);
 
-movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
+// movies.sort((a, b) => (a.title > b.title) ? 1 : -1);
 const options = [ 'title', 'year', 'rating' ];
 ---
 
@@ -50,7 +50,7 @@ const options = [ 'title', 'year', 'rating' ];
       </div>
     </header>
 
-		{ movies && (
+		<!-- { movies && (
       <section class="mb-2xl">
         <h2 class="font-display leading-none uppercase text-highlight text-4xl mb-m">All Movies Watched <span class="align-top inline-block font-sans text-sm mt-[0.4em]">({movies.length})</span></h2>
         <astro-sort-list id="sort-list" data-value-names={options}>
@@ -70,10 +70,10 @@ const options = [ 'title', 'year', 'rating' ];
           </ul>
         </astro-sort-list>
       </section>
-    ) }
+    ) } -->
 	</main>
 </BaseLayout>
-<script>
+<!-- <script>
   import List from 'list.js';
 
   class AstroSortList extends HTMLElement {
@@ -119,7 +119,7 @@ const options = [ 'title', 'year', 'rating' ];
   }
 
   customElements.define('astro-sort-list', AstroSortList);
-</script>
+</script> -->
 <style>
   h1 {
     --scaler:15.7cqw;
