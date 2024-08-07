@@ -32,13 +32,14 @@ const years = await getEntries(yearsQuery);
 
 let moviesQuery = `{
   entries(site: "halloween", section: "movies", rating: "5", orderBy: "RAND()") {
+		slug
     ... on movie_Entry {
       id
       rating
       year
       title
       externalLink
-      richText
+			notes
       yearsWatched(status: ["disabled", "live"]) {
         title
         status
@@ -102,6 +103,16 @@ const randomTopTen = shuffle(topTenMovies).slice(0, 10);
 					<ul class="grid gap-s md:grid-cols-2 xl:grid-cols-5">
 						{randomTopTen.map((movie) => <MovieCard movie={movie} />)}
 					</ul>
+
+					{ randomTopTen.map(movie => (
+						<div id={ movie.slug } class="popover" popover>
+							<button popovertarget={ movie.slug } popovertargetaction="hide">close</button>
+							<div>
+								<h2 class="text-lg pr-3xl text-balance">Matt's notes on { movie.title }:</h2>
+								<div class="popover-content text-sm pt-s" set:html={ movie.notes }></div>
+							</div>
+						</div>
+					))}
 				</section>
 			)}
 

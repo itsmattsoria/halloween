@@ -11,8 +11,8 @@ let query = `{
       ... on movie_Entry {
         year
         rating
-        richText
         externalLink
+        notes
         yearsWatched(status: ["disabled", "live"]) {
           title
           status
@@ -53,7 +53,7 @@ const options = [ 'title', 'year', 'rating' ];
 		{ movies && (
       <section class="mb-2xl">
         <h2 class="font-display leading-none uppercase text-highlight text-4xl mb-m">All Movies Watched <span class="align-top inline-block font-sans text-sm mt-[0.4em]">({movies.length})</span></h2>
-        <astro-sort-list id="sort-list" data-value-names={options}>
+        <astro-sort-list id="sort-list" data-value-names={options} class="@container">
           <div class="sticky top-0 z-30 bg-secondary flex items-start flex-col sm:flex-row sm:justify-between sm:items-end gap-4 py-2 mb-4">
             <div class="flex gap-4">
               <div class="text-base">Sort by:</div>
@@ -69,6 +69,18 @@ const options = [ 'title', 'year', 'rating' ];
             )}
           </ul>
         </astro-sort-list>
+
+        { movies.map(movie => (
+          <div id={ movie.slug } class="popover" popover>
+            <button popovertarget={ movie.slug } popovertargetaction="hide">
+              close
+            </button>
+            <div>
+              <h2 class="text-lg pr-3xl text-balance">Matt's notes on { movie.title }:</h2>
+              <div class="popover-content text-sm pt-s" set:html={ movie.notes }></div>
+            </div>
+          </div>
+        ))}
       </section>
     ) }
 	</main>
@@ -144,9 +156,13 @@ const options = [ 'title', 'year', 'rating' ];
   }
 
   .list-view {
-    gap: 0;
-    grid-template-columns: 1fr;
+    gap: 1px;
+    overflow: hidden;
     border-radius: theme('borderRadius.DEFAULT');
-    background-color: theme('colors.highlight');
+    grid-template-columns: 1fr;
+
+    @screen md {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 </style>
