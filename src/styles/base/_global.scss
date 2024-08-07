@@ -25,6 +25,10 @@ body {
   color: theme('colors.primary');
 }
 
+*:focus-visible {
+  outline-offset: 0.25rem;
+}
+
 .container {
   container: container / inline-size;
   margin-inline: auto;

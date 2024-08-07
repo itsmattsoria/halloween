@@ -1,0 +1,43 @@
+button[popovertargetaction] {
+  line-height: 1;
+  padding: theme('spacing.2xs');
+  color: theme('colors.primary');
+  background-color: theme('colors.secondary');
+  border-radius: theme('borderRadius.DEFAULT');
+  transition: color 0.25s ease-out, background-color 0.25s ease-out;
+
+  &:hover,
+  &:focus-visible {
+    color: theme('colors.secondary');
+    background-color: theme('colors.primary');
+  }
+}
+
+button[popovertargetaction='show'] {
+  color: theme('colors.primary');
+  background-color: theme('colors.secondary');
+}
+button[popovertargetaction='hide'] {
+  color: theme('colors.secondary');
+  background-color: theme('colors.highlight');
+}
+
+[popover] {
+  width: 65ch;
+  padding: theme('spacing.s');
+  color: theme('colors.primary');
+  border-radius: theme('borderRadius.DEFAULT');
+  background-color: theme('colors.secondary');
+  max-width: calc(100vw - 1rem - (theme('spacing.m') * 2));
+
+  &::backdrop {
+    opacity: 0.5;
+    background-color: theme('colors.highlight');
+  }
+
+  button[popovertargetaction='hide'] {
+    position: absolute;
+    inset-inline-end: theme('spacing.s');
+    inset-block-start: theme('spacing.s');
+  }
+}

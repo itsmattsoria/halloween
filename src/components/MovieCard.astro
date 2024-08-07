@@ -22,7 +22,7 @@ const ratingMap = {
 };
 ---
 
-<li class="movie-card @container rounded bg-highlight text-secondary p-xs" data-card>
+<li class="movie-card @container relative rounded bg-highlight text-secondary p-xs" data-card>
   <div class="flex flex-col h-full @[400px]:grid @[400px]:grid-cols-2 gap-s lg:@[400px]:h-full">
     { movie.movieImage && (
       <Image
@@ -55,12 +55,16 @@ const ratingMap = {
       </div>
     </div>
   </div>
+
+  { movie.notes && (
+    <button popovertarget={ movie.slug } popovertargetaction="show" class="absolute bottom-xs right-xs">notes</button>
+  )}
 </li>
+
 <style>
   .movie-card.list-view {
     border-radius: 0;
     container-type: inline-size;
-    background-color: transparent;
 
     > div {
       display: flex;
@@ -68,13 +72,10 @@ const ratingMap = {
       gap: theme('spacing.s');
     }
 
-    + .movie-card.list-view {
-      border-top: 1px solid theme('colors.secondary');
-    }
-
     .text-container {
-      gap: theme('spacing.2xs');
       width: 100%;
+      max-width: 65ch;
+      gap: theme('spacing.2xs');
 
       > div:not(.watched-in) {
         display: flex;
