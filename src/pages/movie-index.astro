@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import MovieCard from '../components/MovieCard.astro';
+import NotesPopover from '../components/NotesPopover.astro';
 import { getEntries } from '../components/EntriesFetch.astro';
 
 let query = `{
@@ -70,17 +71,7 @@ const options = [ 'title', 'year', 'rating' ];
           </ul>
         </astro-sort-list>
 
-        { movies.map(movie => (
-          <div id={ movie.slug } class="popover" popover>
-            <button popovertarget={ movie.slug } popovertargetaction="hide">
-              close
-            </button>
-            <div>
-              <h2 class="text-lg pr-3xl text-balance">Matt's notes on { movie.title }:</h2>
-              <div class="popover-content text-sm pt-s" set:html={ movie.notes }></div>
-            </div>
-          </div>
-        ))}
+        { movies.map((movie) => <NotesPopover movie={movie} />) }
       </section>
     ) }
 	</main>

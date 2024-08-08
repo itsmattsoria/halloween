@@ -2,6 +2,7 @@
 export const prerender = false;
 import BaseLayout from '../layouts/BaseLayout.astro';
 import MovieCard from '../components/MovieCard.astro';
+import NotesPopover from '../components/NotesPopover.astro';
 
 import { getEntry } from '../components/EntryFetch.astro';
 import { getEntries } from '../components/EntriesFetch.astro';
@@ -101,18 +102,10 @@ const randomTopTen = shuffle(topTenMovies).slice(0, 10);
 					</div>
 
 					<ul class="grid gap-s md:grid-cols-2 xl:grid-cols-5">
-						{randomTopTen.map((movie) => <MovieCard movie={movie} />)}
+						{ randomTopTen.map((movie) => <MovieCard movie={movie} />) }
 					</ul>
 
-					{ randomTopTen.map(movie => (
-						<div id={ movie.slug } class="popover" popover>
-							<button popovertarget={ movie.slug } popovertargetaction="hide">close</button>
-							<div>
-								<h2 class="text-lg pr-3xl text-balance">Matt's notes on { movie.title }:</h2>
-								<div class="popover-content text-sm pt-s" set:html={ movie.notes }></div>
-							</div>
-						</div>
-					))}
+					{ randomTopTen.map((movie) => <NotesPopover movie={movie} />) }
 				</section>
 			)}
 
