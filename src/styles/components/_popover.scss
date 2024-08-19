@@ -24,6 +24,7 @@ button[popovertargetaction='hide'] {
 
 [popover] {
   width: 65ch;
+  max-height: 100vh;
   padding: theme('spacing.s');
   color: theme('colors.primary');
   border-radius: theme('borderRadius.DEFAULT');
