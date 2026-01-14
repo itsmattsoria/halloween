@@ -6,10 +6,13 @@ import Video from '../../components/CloudVideo.astro';
 import MovieCard from '../../components/MovieCard.astro';
 import NotesPopover from '../../components/NotesPopover.astro';
 
+export const prerender = false;
+
 import { getEntry } from '../../components/EntryFetch.astro';
 import { getEntries } from '../../components/EntriesFetch.astro';
 
 const { slug } = Astro.params;
+const hasFamilyParam = Astro.url.searchParams.has('family');
 
 let entryQuery = `{
   entry(site: "halloween", section: "halloweenYears", slug: "${slug}") {
@@ -40,6 +43,7 @@ let entryQuery = `{
   }
 }`;
 let entry = await getEntry(entryQuery);
+const showFamilyImages = hasFamilyParam && entry.halloweenImages.length > 0;
 
 let moviesQuery = `{
     entries(site: "halloween", section: "movies", watchlist: false, relatedTo: "${entry.id}", orderBy: "title ASC") {
@@ -120,7 +124,7 @@ export async function getStaticPaths() {
       <div class="text-xl leading-[1.2] mt-xl max-w-prose mb-2xl" set:html={entry.richText}></div>
     )}
 
-    { entry.halloweenImages.length > 0 && (
+    { showFamilyImages && (
       <section class="mb-2xl">
         <h2 class="font-display uppercase text-highlight text-4xl">Did</h2>
         <ul class="masonry gap-x-s lg:gap-x-m">

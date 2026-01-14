@@ -19,7 +19,7 @@ const bodyClasses = bodyClass + ' py-m';
 		<meta charset="UTF-8" />
 		<meta name="description" content="Matt's spooky little digital Halloween diary." />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<ViewTransitions />
@@ -77,11 +77,43 @@ const bodyClasses = bodyClass + ' py-m';
 </html>
 <script>
 	import "lazysizes";
+	// @ts-expect-error Noise is vanilla JS without types.
 	import Noise from "/src/scripts/Noise.js";
+
+	const FAMILY_KEY = 'family';
+
+	const persistFamilyParam = () => {
+		const url = new URL(window.location.href);
+		const hasQueryFlag = url.searchParams.has(FAMILY_KEY);
+
+		if (hasQueryFlag) {
+			localStorage.setItem(FAMILY_KEY, '1');
+		}
+
+		const isFamily = hasQueryFlag || localStorage.getItem(FAMILY_KEY) === '1';
+		if (!isFamily) return;
+
+		document.querySelectorAll<HTMLAnchorElement>('a[href]').forEach((anchor) => {
+			const href = anchor.getAttribute('href');
+			if (!href) return;
+			if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+
+			const target = new URL(href, window.location.origin);
+			if (target.origin !== window.location.origin) return;
+			if (target.searchParams.has(FAMILY_KEY)) return;
+
+			target.searchParams.set(FAMILY_KEY, '1');
+			anchor.href = `${target.pathname}${target.search}${target.hash}`;
+		});
+	};
 
 	document.addEventListener('astro:page-load', () => {
 		const noise = new Noise();
+		persistFamilyParam();
 	});
+
+	// Re-run after view transitions swap in new content.
+	document.addEventListener('astro:after-swap', persistFamilyParam);
 </script>
 <style>
 	.shaker:hover .shake ,
