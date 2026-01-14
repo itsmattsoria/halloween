@@ -80,8 +80,8 @@ const randomTopTen = shuffle(topTenMovies).slice(0, 10);
 			<span class="type-full" style="--scaler:15.7cqw;" transition:name="siteTitle">Halloween</span>
 		</h1>
 
-		<ol class="flex flex-wrap gap-xs justify-between">
-			{years.map((year) => <li><a href={'/year/' + year.slug} class="text-4xl leading-none transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.title}>{year.title}</a></li>)}
+		<ol class="text-4xl leading-none grid grid-cols-[repeat(auto-fill,_minmax(2.2ch,_1fr))] gap-x-xs">
+			{years.map((year) => <li><a href={'/year/' + year.slug} class="leading-none transition-colors font-display hover:text-highlight focus-visible:text-highlight" transition:name={year.title}>{year.title}</a></li>)}
 		</ol>
 
 		{ entry.richText && (
